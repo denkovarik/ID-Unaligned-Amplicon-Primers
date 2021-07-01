@@ -1,8 +1,8 @@
-# Bioinformatics-Testing-for-NuProbe-Scientist-I
+# Kovarik Bioinformatics Testing for NuProbe Scientist I
 
 
 ## Introduction
-This project is the Bioinformatics Testing for NuProbe Scientist I.
+This project is the Bioinformatics Testing for NuProbe Scientist I for Dennis Kovarik.
 
 ## Setup
 This project was developed for the Window's Operating System on a 64 bit machine.
@@ -20,11 +20,11 @@ The first thing you need to do is to make sure that Git is installed on your dev
 ### Cloning This Repo with HTTPS
 To download this repository on your device, you must clone this repo using either HTTPS or SSH. The easiest way to clone this repository on your local device is through HTTPS. If you SDK allows you to clone a repo through HTTPS, then do so. Otherwise, you can do it directly on the command prompt. To do so, open up the command prompt and move to the desired directory. Then simply run the following command and enter you credentials.
 ```
-git clone https://github.com/denkovarik/Annotate-KEGG-Pathway.git
+git clone https://github.com/denkovarik/Kovarik-BI-Testing-for-NuProbe-Scientist-I.git
 ```
 After the repo has been cloned on your device, move into the Kovarik-Technical-Interview directory from the command line.
 ```
-cd Annotate-KEGG-Pathway
+cd Kovarik-BI-Testing-for-NuProbe-Scientist-I
 ```
 
 ### Cloning This Repo with SSH
@@ -39,11 +39,11 @@ Once you have an SSH Key Pair generated, you need to add your public SSH key to 
 #### Clone the Repository
 If your SDK allows for it, then clone this repository through you SDK. Otherwise, open up the command prompt, move the the directory of your choice, then run the following command.
 ```
-git clone git@github.com:denkovarik/BI-Testing-for-NuProbe-Scientist-I.git
+git clone git@github.com:denkovarik/Kovarik-BI-Testing-for-NuProbe-Scientist-I.git
 ```
 After the repo has been cloned on your device, move into the Bioinformatics-Tools directory from the command line.
 ```
-cd BI-Testing-for-NuProbe-Scientist-I
+cd Kovarik-BI-Testing-for-NuProbe-Scientist-I
 ```
 
 ### Install Dependencies
