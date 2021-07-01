@@ -9,7 +9,7 @@ This project was developed for the Ubuntu 20.04.
 
 ### Dependences
 * Git
-* Python 3.9
+* Python 3.8
 * pysam
 
 ### Cloning This Repo with HTTPS
