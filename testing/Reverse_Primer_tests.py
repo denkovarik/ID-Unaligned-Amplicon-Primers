@@ -56,7 +56,7 @@ class Reverse_Primer_Tests(unittest.TestCase):
         self.assertTrue(type(rp.sequence) == type(ref_seq.sequence))
         # Testing init with Sequence object
         rp = Reverse_Primer(ref_seq)
-        self.assertTrue(type(rp.sequence) == type(ref_seq.sequence))
+        self.assertTrue(type(rp.sequence) == type(ref_seq))
         # Testing init with invalid sequence
         error = False
         try:

@@ -54,7 +54,7 @@ class Forward_Primer_Tests(unittest.TestCase):
         self.assertTrue(type(fp.sequence) == type(ref_seq.sequence))
         # Testing init with Sequence object
         fp = Forward_Primer(ref_seq)
-        self.assertTrue(type(fp.sequence) == type(ref_seq.sequence))
+        self.assertTrue(type(fp.sequence) == type(ref_seq))
         # Testing init with invalid sequence
         error = False
         try:
