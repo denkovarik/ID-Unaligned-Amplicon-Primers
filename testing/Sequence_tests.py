@@ -12,12 +12,62 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 from classes.Sequence import Sequence
-
+from classes.Nucleotide import Nucleotide
 
 class Sequence_Tests(unittest.TestCase):
     """
     Runs tests for the Sequence class.
     """
+    def test_init(self):
+        """
+        Tests the initialization of the Sequence class.
+        
+        :param self: An instance of the Sequence_Tests class
+        """
+        # The sequence as a list of Nucleotides
+        the_sequence = [Nucleotide("A"),Nucleotide("G"),Nucleotide("A"), \
+                        Nucleotide("G"),Nucleotide("T"),Nucleotide("C"), \
+                        Nucleotide("G")]
+        sq = Sequence(the_sequence)
+        self.assertTrue(sq.sequence[0].base == "A")
+        self.assertTrue(sq.sequence[1].base == "G")
+        self.assertTrue(sq.sequence[2].base == "A")
+        self.assertTrue(sq.sequence[3].base == "G")
+        self.assertTrue(sq.sequence[4].base == "T")
+        self.assertTrue(sq.sequence[5].base == "C")
+        self.assertTrue(sq.sequence[6].base == "G")
+
+        # The same sequence as a String
+        the_sequence = "AGAGTCG"
+        sq = Sequence(the_sequence)
+        self.assertTrue(sq.sequence[0].base == "A")
+        self.assertTrue(sq.sequence[1].base == "G")
+        self.assertTrue(sq.sequence[2].base == "A")
+        self.assertTrue(sq.sequence[3].base == "G")
+        self.assertTrue(sq.sequence[4].base == "T")
+        self.assertTrue(sq.sequence[5].base == "C")
+        self.assertTrue(sq.sequence[6].base == "G") 
+
+        # The same sequence as a list of Strings
+        the_sequence = ["A","G","A","G","T","C","G"]
+        error = False
+        try:
+            sq = Sequence(the_sequence)
+            error = True
+        except:
+            self.assertTrue(True)
+        finally:
+            if error:
+                self.assetTrue(False)
+        #self.assertTrue(sq.sequence[0].base == "A")
+        #self.assertTrue(sq.sequence[1].base == "G")
+        #self.assertTrue(sq.sequence[2].base == "A")
+        #self.assertTrue(sq.sequence[3].base == "G")
+        #self.assertTrue(sq.sequence[4].base == "T")
+        #self.assertTrue(sq.sequence[5].base == "C")
+        #self.assertTrue(sq.sequence[6].base == "G") 
+
+        
     def test_execution(self):
         """
         Tests the general execuation of the testing file.
