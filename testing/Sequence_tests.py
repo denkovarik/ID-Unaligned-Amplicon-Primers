@@ -18,6 +18,27 @@ class Sequence_Tests(unittest.TestCase):
     """
     Runs tests for the Sequence class.
     """
+    def test_len(self):
+        """
+        Tests the functionality of the overloaded len() function for the 
+        Sequence class.
+
+        :param self: An instance of the Sequence_Tests class
+        """
+        seq = Sequence("AATTGGCC")
+        self.assertTrue(len(seq) == len(seq.sequence))        
+
+        
+    def test_indexing(self):
+        """
+        Tests indexing the Sequence class.
+        
+        :param self: An instance of the Sequence_Tests class
+        """
+        seq = Sequence("AATTGGCC")
+        self.assertTrue(seq[0].base == "A")
+
+
     def test_init(self):
         """
         Tests the initialization of the Sequence class.
