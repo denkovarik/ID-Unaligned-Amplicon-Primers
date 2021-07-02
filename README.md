@@ -2,7 +2,7 @@
 
 
 ## Introduction
-This project is the Bioinformatics Testing for NuProbe Scientist I for Dennis Kovarik.
+This project is the Bioinformatics Testing for NuProbe Scientist I for Dennis Kovarik. The software architecture for this project can be seen [here](https://github.com/denkovarik/Kovarik-BI-Testing-for-NuProbe-Scientist-I/tree/main/images/software_architecture.png).
 
 ## Setup
 This project was developed for the Ubuntu 20.04.
