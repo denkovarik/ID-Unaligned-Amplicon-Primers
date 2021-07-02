@@ -18,7 +18,7 @@ class Unaligned_Amplicons_Tests(unittest.TestCase):
     """
     Runs tests for the Unaligned_Amplicons class.
     """
-    def testExecution(self):
+    def test_execution(self):
         """
         Tests the general execuation of the testing file.
         

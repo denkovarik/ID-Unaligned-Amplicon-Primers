@@ -18,7 +18,7 @@ class Sequence_Tests(unittest.TestCase):
     """
     Runs tests for the Sequence class.
     """
-    def testExecution(self):
+    def test_execution(self):
         """
         Tests the general execuation of the testing file.
         

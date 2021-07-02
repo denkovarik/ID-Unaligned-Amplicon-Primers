@@ -18,7 +18,16 @@ class Nucleotide_Tests(unittest.TestCase):
     """
     Runs tests for the Nucleotide class.
     """
-    def testExecution(self):
+    def test_init(self):
+        """
+        Tests the general execuation of the testing file.
+        
+        :param self: An instance of the Nucleotide_Tests class
+        """
+        self.assertTrue(True)
+
+
+    def test_execution(self):
         """
         Tests the general execuation of the testing file.
         

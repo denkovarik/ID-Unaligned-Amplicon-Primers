@@ -18,7 +18,7 @@ class Primer_Tests(unittest.TestCase):
     """
     Runs tests for the Primer class.
     """
-    def testExecution(self):
+    def test_execution(self):
         """
         Tests the general execuation of the testing file.
         
