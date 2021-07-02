@@ -38,6 +38,27 @@ class Sequence():
         else:
             raise Exception("Invalid sequence of nucleotides for Sequence class.")
 
+
+    def __getitem__(self, index):
+        """
+        Overloaded function for indexing the Sequence class.
+
+        :param self: An instance of the Sequence class
+        :param index: The index of the sequence to access
+        """
+        if index < 0 or index >= len(self.sequence):
+            raise Exception("Index is out of bounds")
+        return self.sequence[index]
+
+    
+    def __len__(self):
+        """
+        Overloaded function for the sequence length for the Sequence class.
+
+        :param self: An instance of the Sequence class
+        """
+        return len(self.sequence)
+
         
     def to_string(self):
         """
