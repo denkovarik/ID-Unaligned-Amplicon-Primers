@@ -18,6 +18,84 @@ class Nucleotide_Tests(unittest.TestCase):
     """
     Runs tests for the Nucleotide class.
     """
+    def test_ne(self):
+        """
+        Tests the overload inequality operator for the class.
+        
+        :param self: An instance of the Nucleotide_Tests class
+        """
+        a = Nucleotide("A")
+        g = Nucleotide("G")
+        c = Nucleotide("C")
+        t = Nucleotide("T")
+        u = Nucleotide("U")
+        a2 = Nucleotide("A")
+        g2 = Nucleotide("G")
+        c2 = Nucleotide("C")
+        t2 = Nucleotide("T")
+        u2 = Nucleotide("U")
+        # Testing for Adenine
+        self.assertTrue(a != g)
+        self.assertTrue(a != 'g')
+        self.assertFalse(a != a)
+        self.assertFalse(a != 'a')
+        self.assertFalse('a' != a)
+
+
+    def test_eq(self):
+        """
+        Tests the overload equality operator for the class.
+        
+        :param self: An instance of the Nucleotide_Tests class
+        """
+        a = Nucleotide("A")
+        g = Nucleotide("G")
+        c = Nucleotide("C")
+        t = Nucleotide("T")
+        u = Nucleotide("U")
+        a2 = Nucleotide("A")
+        g2 = Nucleotide("G")
+        c2 = Nucleotide("C")
+        t2 = Nucleotide("T")
+        u2 = Nucleotide("U")
+        # Testing for Adenine
+        self.assertTrue(a == a)
+        self.assertTrue(a == a2)
+        self.assertTrue(a == 'a')
+        self.assertTrue(a == 'A')
+        self.assertTrue('a' == a)
+        self.assertFalse(a == g)
+        self.assertFalse(a == c)
+        self.assertFalse(a == t)
+        self.assertFalse(a == u)
+        # Testing for Cytosine
+        self.assertTrue(c == c2)
+        self.assertFalse(c == g)
+        self.assertFalse(c == a)
+        self.assertFalse(c == t)
+        self.assertFalse(c == u)
+        # Testing for Guanine
+        self.assertTrue(g == g)
+        self.assertTrue(g == g2)
+        self.assertFalse(g == c)
+        self.assertFalse(g == a)
+        self.assertFalse(g == t)
+        self.assertFalse(g == u)
+        # Testing for Thymine
+        self.assertTrue(t == t)
+        self.assertTrue(t == t2)
+        self.assertFalse(t == c)
+        self.assertFalse(t == a)
+        self.assertFalse(t == g)
+        # Testing for uracil
+        self.assertTrue(u == u)
+        self.assertTrue(u == u2)
+        self.assertFalse(u == c)
+        self.assertFalse(u == a)
+        self.assertFalse(u == t)
+        self.assertFalse(u == g)
+
+
     def test_binds_to(self):
         """
         Tests the Nucleotide class member function 'binds_to()' on its ability
@@ -34,39 +112,39 @@ class Nucleotide_Tests(unittest.TestCase):
         u = Nucleotide("U")
         
         # Testing Adenine binding rules
-        self.assertTrue(a.binds_to(t))
-        self.assertFalse(a.binds_to(a))
-        self.assertFalse(a.binds_to(g))
-        self.assertFalse(a.binds_to(c))
-        self.assertTrue(a.binds_to(u))
+        self.assertTrue(a.complement(t))
+        self.assertFalse(a.complement(a))
+        self.assertFalse(a.complement(g))
+        self.assertFalse(a.complement(c))
+        self.assertTrue(a.complement(u))
         
         # Testing Uracil binding rules
-        self.assertTrue(u.binds_to(a))
-        self.assertFalse(u.binds_to(t))
-        self.assertFalse(u.binds_to(g))
-        self.assertFalse(u.binds_to(c))
-        self.assertFalse(u.binds_to(u))
+        self.assertTrue(u.complement(a))
+        self.assertFalse(u.complement(t))
+        self.assertFalse(u.complement(g))
+        self.assertFalse(u.complement(c))
+        self.assertFalse(u.complement(u))
         
         # Testing Thymine binding rules
-        self.assertTrue(t.binds_to(a))
-        self.assertFalse(t.binds_to(t))
-        self.assertFalse(t.binds_to(g))
-        self.assertFalse(t.binds_to(c))
-        self.assertFalse(t.binds_to(u))
+        self.assertTrue(t.complement(a))
+        self.assertFalse(t.complement(t))
+        self.assertFalse(t.complement(g))
+        self.assertFalse(t.complement(c))
+        self.assertFalse(t.complement(u))
 
         # Testing guanine binding rules
-        self.assertTrue(g.binds_to(c))
-        self.assertFalse(g.binds_to(a))
-        self.assertFalse(g.binds_to(g))
-        self.assertFalse(g.binds_to(t))
-        self.assertFalse(g.binds_to(u))
+        self.assertTrue(g.complement(c))
+        self.assertFalse(g.complement(a))
+        self.assertFalse(g.complement(g))
+        self.assertFalse(g.complement(t))
+        self.assertFalse(g.complement(u))
 
         # Testing cytosine binding rules
-        self.assertTrue(c.binds_to(g))
-        self.assertFalse(c.binds_to(a))
-        self.assertFalse(c.binds_to(c))
-        self.assertFalse(c.binds_to(t))
-        self.assertFalse(c.binds_to(u))        
+        self.assertTrue(c.complement(g))
+        self.assertFalse(c.complement(a))
+        self.assertFalse(c.complement(c))
+        self.assertFalse(c.complement(t))
+        self.assertFalse(c.complement(u))        
         
 
     def test_init(self):
