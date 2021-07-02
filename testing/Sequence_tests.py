@@ -18,6 +18,16 @@ class Sequence_Tests(unittest.TestCase):
     """
     Runs tests for the Sequence class.
     """
+    def test_str(self):
+        """
+        Tests the functionality of the overloaded to string function for the
+        Sequence class.
+
+        :param self: An instance of the Sequence_Tests class
+        """
+        seq = Sequence("AAG")
+        self.assertTrue(str(seq) == "AAG")
+
     def test_len(self):
         """
         Tests the functionality of the overloaded len() function for the 
