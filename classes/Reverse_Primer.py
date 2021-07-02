@@ -24,7 +24,7 @@ class Reverse_Primer(Primer):
         if type(seq) == type("str"):
             self.sequence = Sequence(seq).sequence
         elif type(seq) == type(Sequence("AAG")):
-            self.sequence = seq.sequence
+            self.sequence = seq
         else:
             raise Exception("Invalid sequence in Reverse_Primer class init()")
     
@@ -40,6 +40,6 @@ class Reverse_Primer(Primer):
         seq_start = len(seq.sequence) - len(self.sequence)
         for i in range(len(self.sequence)):
             seq_i = seq_start + i
-            if not self.sequence[i].binds_to(seq.sequence[seq_i]):
+            if not self.sequence[i].complement(seq.sequence[seq_i]):
                 return False
         return True

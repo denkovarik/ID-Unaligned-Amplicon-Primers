@@ -25,7 +25,7 @@ class Forward_Primer(Primer):
         if type(seq) == type("str"):
             self.sequence = Sequence(seq).sequence
         elif type(seq) == type(Sequence("AAG")):
-            self.sequence = seq.sequence
+            self.sequence = seq
         else:
             raise Exception("Invalid sequence in Forward_Primer class init()")
     
@@ -39,6 +39,6 @@ class Forward_Primer(Primer):
         :param seq: The sequence to try to bind to as a Sequence object
         """
         for fp_nuc, seq_nuc in zip(self.sequence, seq.sequence):
-            if not fp_nuc.binds_to(seq_nuc):
+            if not fp_nuc.complement(seq_nuc):
                 return False
         return True
