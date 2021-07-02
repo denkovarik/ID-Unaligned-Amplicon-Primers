@@ -29,6 +29,7 @@ class Sequence_Tests(unittest.TestCase):
                         Nucleotide("G"),Nucleotide("T"),Nucleotide("C"), \
                         Nucleotide("G")]
         sq = Sequence(the_sequence)
+        self.assertTrue(sq.to_string() == "AGAGTCG")
         self.assertTrue(sq.sequence[0].base == "A")
         self.assertTrue(sq.sequence[1].base == "G")
         self.assertTrue(sq.sequence[2].base == "A")
