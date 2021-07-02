@@ -37,4 +37,15 @@ class Sequence():
             self.sequence = seq
         else:
             raise Exception("Invalid sequence of nucleotides for Sequence class.")
+
         
+    def to_string(self):
+        """
+        Returns the sequence as a String.        
+
+        :param self: An instance of the Sequence class.
+        """
+        seq = ""
+        for c in self.sequence:
+            seq += c.base
+        return seq
