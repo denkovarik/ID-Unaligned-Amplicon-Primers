@@ -20,6 +20,38 @@ class Forward_Primer_Tests(unittest.TestCase):
     """
     Runs tests for the Forward_Primer class.
     """
+    def test_eq(self):
+        """
+        Tests the overloaded equality operator. 
+        
+        :param self: An instance of the Forward_Primer_Tests class
+        """
+        seq1 = "AAT"
+        seq2 = "GGG"
+        fp1 = Forward_Primer(seq1)
+        fp2 = Forward_Primer(seq1)
+        fp3 = Forward_Primer(seq2)
+
+        self.assertTrue(fp1 == fp2)
+        self.assertTrue(fp1 == seq1)
+        self.assertTrue(seq1 == fp2)
+        self.assertTrue(fp1 != fp3)
+        self.assertFalse(fp1 != fp2)
+        self.assertFalse(fp1 != seq1)
+        self.assertFalse(seq1 != fp2)
+        self.assertFalse(fp1 == fp3)
+
+
+    def test_str(self):
+        """
+        Tests the overload to string method for the Forward_Primer class.
+
+        :param self: An instance of the Forward_Primer class
+        """
+        fp = Forward_Primer("AAA")
+        self.assertTrue(str(fp) == "AAA")
+
+
     def test_binds_to(self):
         """
         Tests the Foward_Primer class member function 'binds_to()' on its 
@@ -51,7 +83,7 @@ class Forward_Primer_Tests(unittest.TestCase):
         ref_seq = Sequence(test_seq)
         # Testing init with String sequence
         fp = Forward_Primer(test_seq)
-        self.assertTrue(type(fp.sequence) == type(ref_seq.sequence))
+        self.assertTrue(type(fp.sequence) == type(ref_seq))
         # Testing init with Sequence object
         fp = Forward_Primer(ref_seq)
         self.assertTrue(type(fp.sequence) == type(ref_seq))
