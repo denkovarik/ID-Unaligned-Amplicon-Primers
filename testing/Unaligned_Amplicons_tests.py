@@ -1,3 +1,9 @@
+###############################################################################
+# File: Unaligned_Amplicons_tests.py
+# Author: Dennis Kovarik
+# Purpose: Testing file for the Unaligned_Amplicons class
+###############################################################################
+
 import io
 import os, sys, inspect
 import unittest

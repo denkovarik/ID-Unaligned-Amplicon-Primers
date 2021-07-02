@@ -1,3 +1,9 @@
+###############################################################################
+# File: Forward_Primer_tests.py
+# Author: Dennis Kovarik
+# Purpose: Testing file for the Forward_Primer class
+###############################################################################
+
 import io
 import os, sys, inspect
 import unittest

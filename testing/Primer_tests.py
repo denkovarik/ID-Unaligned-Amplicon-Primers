@@ -1,3 +1,9 @@
+###############################################################################
+# File: Primer_tests.py
+# Author: Dennis Kovarik
+# Purpose: Testing file for the Primer class
+###############################################################################
+
 import io
 import os, sys, inspect
 import unittest

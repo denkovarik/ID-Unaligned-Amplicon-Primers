@@ -1,3 +1,9 @@
+###############################################################################
+# File: Nucleotide_tests.py
+# Author: Dennis Kovarik
+# Purpose: Testing file for the Nucleotide class
+###############################################################################
+
 import io
 import os, sys, inspect
 import unittest

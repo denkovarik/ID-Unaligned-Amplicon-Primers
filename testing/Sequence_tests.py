@@ -1,3 +1,9 @@
+###############################################################################
+# File: Sequence_tests.py
+# Author: Dennis Kovarik
+# Purpose: Testing file for the Sequence class
+###############################################################################
+
 import io
 import os, sys, inspect
 import unittest
