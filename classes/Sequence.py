@@ -59,6 +59,15 @@ class Sequence():
         """
         return len(self.sequence)
 
+    
+    def __str__(self):
+        """
+        Overloaded function to convert the instance of the class to a string..
+
+        :param self: An instance of the Sequence class
+        """
+        return self.to_string()
+
         
     def to_string(self):
         """
@@ -68,5 +77,5 @@ class Sequence():
         """
         seq = ""
         for c in self.sequence:
-            seq += c.base
+            seq += str(c)
         return seq
