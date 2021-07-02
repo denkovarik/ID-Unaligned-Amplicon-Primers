@@ -23,11 +23,31 @@ class Forward_Primer(Primer):
     """
     def __init__(self, seq):
         if type(seq) == type("str"):
-            self.sequence = Sequence(seq).sequence
+            self.sequence = Sequence(seq)
         elif type(seq) == type(Sequence("AAG")):
             self.sequence = seq
         else:
             raise Exception("Invalid sequence in Forward_Primer class init()")
+
+    
+    def __eq__(self, other):
+        """
+        The overloaded equality operator for the class.
+
+        :param self: An instance of the Forward_Primer class.
+        :param other: Another instance of the Forward_Primer class to compare 
+                      this instance to.
+        """
+        return str(self.sequence) == str(other)
+
+
+    def __str__(self):
+        """
+        The overloaded to string method for the class.
+
+        :param self: An instance of the Forward_Primer class
+        """
+        return str(self.sequence)
     
 
     def binds_to(self, seq):
@@ -38,7 +58,9 @@ class Forward_Primer(Primer):
         :param self: An instance of the Primer class
         :param seq: The sequence to try to bind to as a Sequence object
         """
-        for fp_nuc, seq_nuc in zip(self.sequence, seq.sequence):
-            if not fp_nuc.complement(seq_nuc):
+        if len(self.sequence) > len(seq):
+            return False
+        for i in range(len(self.sequence)):
+            if not self.sequence[i].complement(seq[i]):
                 return False
         return True
