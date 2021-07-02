@@ -26,9 +26,31 @@ class Nucleotide():
         if not base in Nucleotide.valid_bases:
             raise exception(str(base) + " is not a valid base for a nucleotide")
         self.base = base
+    
+
+    def __eq__(self, other):
+        """
+        Overloaded equality operator for the class
+
+        :param self: An instance of the Nucleotide class.
+        :param other: An other nucleotide being compared
+        """
+        if type(other) == type(Nucleotide("A")):
+            return self.base == other.base
+        if type(other) == type("str"):
+            return self.base == other.upper()
 
 
-    def binds_to(self, nuc):
+    def __str__(self):
+        """
+        Overloaded to string method for class.
+
+        :param self: An instance of the Nucleotide class.
+        """
+        return self.base 
+
+
+    def complement(self, nuc):
         """
         Determines if this instance of the Nucleotide class binds the instance
         of the Nucleotide class passed into the function 'nuc'.
