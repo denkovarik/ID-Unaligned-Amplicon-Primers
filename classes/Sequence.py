@@ -37,6 +37,16 @@ class Sequence():
             self.sequence = seq
         else:
             raise Exception("Invalid sequence of nucleotides for Sequence class.")
+    
+
+    def __eq__(self, other):
+        """
+        Overloaded equality operator for the class
+
+        :param self: An instance of the Nucleotide class.
+        :param other: An other nucleotide being compared
+        """
+        return str(self) == str(other)
 
 
     def __getitem__(self, index):
