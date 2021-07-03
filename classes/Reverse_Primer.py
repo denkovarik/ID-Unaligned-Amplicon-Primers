@@ -22,11 +22,22 @@ class Reverse_Primer(Primer):
     """
     def __init__(self, seq):
         if type(seq) == type("str"):
-            self.sequence = Sequence(seq).sequence
+            self.sequence = Sequence(seq)
         elif type(seq) == type(Sequence("AAG")):
             self.sequence = seq
         else:
             raise Exception("Invalid sequence in Reverse_Primer class init()")
+
+    
+    def __eq__(self, other):
+        """
+        The overloaded equality operator for the class.
+
+        :param self: An instance of the Reverse_Primer class.
+        :param other: Another instance of the Reverse_Primer class to compare 
+                      this instance to.
+        """
+        return str(self.sequence) == str(other)
     
 
     def binds_to(self, seq):
@@ -43,3 +54,12 @@ class Reverse_Primer(Primer):
             if not self.sequence[i].complement(seq.sequence[seq_i]):
                 return False
         return True
+
+
+    def __str__(self):
+        """
+        The overloaded to string method for the class.
+
+        :param self: An instance of the Reverse_Primer class
+        """
+        return str(self.sequence)
