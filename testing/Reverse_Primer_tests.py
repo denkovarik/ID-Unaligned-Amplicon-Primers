@@ -30,10 +30,10 @@ class Reverse_Primer_Tests(unittest.TestCase):
         """
         seq1 = "AAT"
         seq2 = "GGG"
-        rp1 = Reverse_Primer(seq1)
-        rp2 = Reverse_Primer(seq1)
-        rp3 = Reverse_Primer(seq2)
-
+        rp1 = Reverse_Primer(seq1, 1)
+        rp2 = Reverse_Primer(seq1, 2)
+        rp3 = Reverse_Primer(seq2, 4)
+        self.assertTrue(rp1.index == 1)
         self.assertTrue(rp1 == rp2)
         self.assertTrue(rp1 == seq1)
         self.assertTrue(seq1 == rp2)
@@ -50,7 +50,7 @@ class Reverse_Primer_Tests(unittest.TestCase):
 
         :param self: An instance of the Forward_Primer class
         """
-        rp = Reverse_Primer("AAA")
+        rp = Reverse_Primer("AAA", 0)
         self.assertTrue(str(rp) == "AAA")
 
 
@@ -65,8 +65,8 @@ class Reverse_Primer_Tests(unittest.TestCase):
         test_sequence2 = "AAUGCGAAUGC"
         rp_seq2 = "TTA"
         rp_seq1 = "ACG"
-        rp1 = Reverse_Primer(rp_seq1)
-        rp2 = Reverse_Primer(rp_seq2)
+        rp1 = Reverse_Primer(rp_seq1, 10)
+        rp2 = Reverse_Primer(rp_seq2, 11)
         seq1 = Sequence(test_sequence1)
         seq2 = Sequence(test_sequence2)
         self.assertTrue(rp1.binds_to(seq1))
@@ -84,10 +84,10 @@ class Reverse_Primer_Tests(unittest.TestCase):
         test_seq = "AATCGGTA"
         ref_seq = Sequence(test_seq)
         # Testing init with String sequence
-        rp = Reverse_Primer(test_seq)
+        rp = Reverse_Primer(test_seq, 13)
         self.assertTrue(type(rp.sequence) == type(ref_seq))
         # Testing init with Sequence object
-        rp = Reverse_Primer(ref_seq)
+        rp = Reverse_Primer(ref_seq, 15)
         self.assertTrue(type(rp.sequence) == type(ref_seq))
         # Testing init with invalid sequence
         error = False

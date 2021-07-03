@@ -20,13 +20,14 @@ class Reverse_Primer(Primer):
     """
     Class that is used to represent a Reverse_Primer.
     """
-    def __init__(self, seq):
+    def __init__(self, seq, index):
         if type(seq) == type("str"):
             self.sequence = Sequence(seq)
         elif type(seq) == type(Sequence("AAG")):
             self.sequence = seq
         else:
             raise Exception("Invalid sequence in Reverse_Primer class init()")
+        self.index = index
 
     
     def __eq__(self, other):
