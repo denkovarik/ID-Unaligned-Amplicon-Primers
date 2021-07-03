@@ -18,11 +18,45 @@ class Sequence_Tests(unittest.TestCase):
     """
     Runs tests for the Sequence class.
     """
+    def test_sort(self):
+        """
+        Tests sorting a list of sequences
+
+        :param self: An instance of the Sequence_Tests class
+        """
+        # Make the test
+        test_seqs = ["TAT", "AAG", "TTA", "GCG", "AAC"]
+        test = []
+        for i in test_seqs:
+            test += [Sequence(i)]
+        # The expected answer
+        answer = test_seqs
+        answer.sort()
+        # Run the test
+        test.sort()
+        for t, a in zip(test, answer):
+            self.assertTrue(t == a)
+
+        
+    def test_lt(self):
+        """
+        Tests the overload less than operator.
+
+        :param self: An instance of the Sequence_Tests class
+        """
+        seq1 = "AAAA"
+        seq2 = "AAAC"
+        # Control for test
+        self.assertTrue(seq1 < seq2) 
+        # The test
+        self.assertTrue(Sequence(seq1) < Sequence(seq2))
+
+
     def test_eq(self):
         """
         Tests the overload equality operator for the class.
 
-        :param self: An instance of the Sequence class
+        :param self: An instance of the Sequence_Tests class
         """
         seq1 = Sequence("AGT")
         seq2 = Sequence("AGT")
