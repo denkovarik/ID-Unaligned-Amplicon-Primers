@@ -18,6 +18,31 @@ class Sequence_Tests(unittest.TestCase):
     """
     Runs tests for the Sequence class.
     """
+    def test_eq(self):
+        """
+        Tests the overload equality operator for the class.
+
+        :param self: An instance of the Sequence class
+        """
+        seq1 = Sequence("AGT")
+        seq2 = Sequence("AGT")
+        seq3 = Sequence("TTT")
+
+        self.assertTrue(seq1 == seq2)
+        self.assertTrue("AGT" == seq2)
+        self.assertTrue(seq1 == "AGT")
+        self.assertTrue(seq1 != seq3)
+        self.assertTrue("AGT" != seq3)
+        self.assertTrue(seq1 != "TTT")
+        
+        self.assertFalse(seq1 != seq2)
+        self.assertFalse("AGT" != seq2)
+        self.assertFalse(seq1 != "AGT")
+        self.assertFalse(seq1 == seq3)
+        self.assertFalse("AGT" == seq3)
+        self.assertFalse(seq1 == "TTT")
+
+
     def test_str(self):
         """
         Tests the functionality of the overloaded to string function for the
@@ -27,6 +52,7 @@ class Sequence_Tests(unittest.TestCase):
         """
         seq = Sequence("AAG")
         self.assertTrue(str(seq) == "AAG")
+
 
     def test_len(self):
         """
