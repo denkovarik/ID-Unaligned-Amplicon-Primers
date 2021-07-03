@@ -21,13 +21,14 @@ class Forward_Primer(Primer):
     """
     Class that is used to represent a Forward_Primer.
     """
-    def __init__(self, seq):
+    def __init__(self, seq, index):
         if type(seq) == type("str"):
             self.sequence = Sequence(seq)
         elif type(seq) == type(Sequence("AAG")):
             self.sequence = seq
         else:
             raise Exception("Invalid sequence in Forward_Primer class init()")
+        self.index = index
 
     
     def __eq__(self, other):
@@ -39,6 +40,28 @@ class Forward_Primer(Primer):
                       this instance to.
         """
         return str(self.sequence) == str(other)
+
+
+    def __lt__(self, other):
+        """
+        The overloaded less than operator for the class.
+
+        :param self: An instance of the Forward_Primer class.
+        :param other: Another instance of the Forward_Primer class to compare.
+        """
+        return self.sequence < other.sequence
+
+
+    @staticmethod
+    def sort(fps):
+        """
+        Sorts a list of forward primers.
+
+        :param self: An instance of the Forward_Primer class
+        :param fps: A list of Forward_Primer objects
+        """
+        fps.sort()
+        return fps
 
 
     def __str__(self):
