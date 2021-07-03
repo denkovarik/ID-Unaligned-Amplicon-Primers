@@ -19,7 +19,42 @@ from classes.Forward_Primer import Forward_Primer
 class Forward_Primer_Tests(unittest.TestCase):
     """
     Runs tests for the Forward_Primer class.
-    """
+    """        
+    def test_lt(self):
+        """
+        Tests the overload less than operator.
+
+        :param self: An instance of the Forward_Primer_Tests class
+        """
+        seq1 = "AAAA"
+        seq2 = "AAAC"
+        # Control for test
+        self.assertTrue(seq1 < seq2) 
+        # The test
+        self.assertTrue(Forward_Primer(seq1, 0) < Forward_Primer(seq2, 21))
+
+
+    def test_sort(self):
+        """
+        Tests the sort static function for the class. 
+        
+        :param self: An instance of the Forward_Primer_Tests class
+        """
+        # Make the test
+        test_seqs = ["TAT", "AAG", "TTA", "GCG", "AAC"]
+        test = []
+        for i in range(len(test_seqs)):
+            test += [Forward_Primer(test_seqs[i], i)]
+        # The expected answer
+        answer = test_seqs
+        answer.sort()
+        # Run the test
+        test = Forward_Primer.sort(test)
+        for t, a in zip(test, answer):
+            self.assertTrue(t == a)
+
+
+
     def test_eq(self):
         """
         Tests the overloaded equality operator. 
@@ -28,10 +63,10 @@ class Forward_Primer_Tests(unittest.TestCase):
         """
         seq1 = "AAT"
         seq2 = "GGG"
-        fp1 = Forward_Primer(seq1)
-        fp2 = Forward_Primer(seq1)
-        fp3 = Forward_Primer(seq2)
-
+        fp1 = Forward_Primer(seq1, 0)
+        fp2 = Forward_Primer(seq1, 1)
+        fp3 = Forward_Primer(seq2, 2)
+        self.assertTrue(fp1.index == 0)
         self.assertTrue(fp1 == fp2)
         self.assertTrue(fp1 == seq1)
         self.assertTrue(seq1 == fp2)
@@ -48,7 +83,7 @@ class Forward_Primer_Tests(unittest.TestCase):
 
         :param self: An instance of the Forward_Primer class
         """
-        fp = Forward_Primer("AAA")
+        fp = Forward_Primer("AAA", 0)
         self.assertTrue(str(fp) == "AAA")
 
 
@@ -63,8 +98,8 @@ class Forward_Primer_Tests(unittest.TestCase):
         test_sequence2 = "AAUGCGAAUGC"
         fp_seq1 = "TTA"
         fp_seq2 = "ACG"
-        fp1 = Forward_Primer(fp_seq1)
-        fp2 = Forward_Primer(fp_seq2)
+        fp1 = Forward_Primer(fp_seq1, 2)
+        fp2 = Forward_Primer(fp_seq2, 10)
         seq1 = Sequence(test_sequence1)
         seq2 = Sequence(test_sequence2)
         self.assertTrue(fp1.binds_to(seq1))
@@ -82,10 +117,10 @@ class Forward_Primer_Tests(unittest.TestCase):
         test_seq = "AATCGGTA"
         ref_seq = Sequence(test_seq)
         # Testing init with String sequence
-        fp = Forward_Primer(test_seq)
+        fp = Forward_Primer(test_seq, 3)
         self.assertTrue(type(fp.sequence) == type(ref_seq))
         # Testing init with Sequence object
-        fp = Forward_Primer(ref_seq)
+        fp = Forward_Primer(ref_seq, 5)
         self.assertTrue(type(fp.sequence) == type(ref_seq))
         # Testing init with invalid sequence
         error = False
