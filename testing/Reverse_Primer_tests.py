@@ -22,6 +22,38 @@ class Reverse_Primer_Tests(unittest.TestCase):
     """
     Runs tests for the Reverse_Primer class.
     """
+    def test_eq(self):
+        """
+        Tests the overloaded equality operator. 
+        
+        :param self: An instance of the Reverse_Primer_Tests class
+        """
+        seq1 = "AAT"
+        seq2 = "GGG"
+        rp1 = Reverse_Primer(seq1)
+        rp2 = Reverse_Primer(seq1)
+        rp3 = Reverse_Primer(seq2)
+
+        self.assertTrue(rp1 == rp2)
+        self.assertTrue(rp1 == seq1)
+        self.assertTrue(seq1 == rp2)
+        self.assertTrue(rp1 != rp3)
+        self.assertFalse(rp1 != rp2)
+        self.assertFalse(rp1 != seq1)
+        self.assertFalse(seq1 != rp2)
+        self.assertFalse(rp1 == rp3)
+
+
+    def test_str(self):
+        """
+        Tests the overload to string method for the Forward_Primer class.
+
+        :param self: An instance of the Forward_Primer class
+        """
+        rp = Reverse_Primer("AAA")
+        self.assertTrue(str(rp) == "AAA")
+
+
     def test_binds_to(self):
         """
         Tests the Reverse_Primer class member function 'binds_to()' on its 
@@ -53,7 +85,7 @@ class Reverse_Primer_Tests(unittest.TestCase):
         ref_seq = Sequence(test_seq)
         # Testing init with String sequence
         rp = Reverse_Primer(test_seq)
-        self.assertTrue(type(rp.sequence) == type(ref_seq.sequence))
+        self.assertTrue(type(rp.sequence) == type(ref_seq))
         # Testing init with Sequence object
         rp = Reverse_Primer(ref_seq)
         self.assertTrue(type(rp.sequence) == type(ref_seq))
