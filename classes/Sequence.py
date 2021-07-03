@@ -37,6 +37,9 @@ class Sequence():
             self.sequence = seq
         else:
             raise Exception("Invalid sequence of nucleotides for Sequence class.")
+        # Change sequence from list to tuple so is unchangeable
+        self.sequence = tuple(self.sequence)
+        self.sequence_str = self.to_string()
     
 
     def __eq__(self, other):
@@ -69,6 +72,16 @@ class Sequence():
         """
         return len(self.sequence)
 
+
+    def __lt__(self, other):
+        """
+        The overloaded less than operator.
+
+        :param self: An instance of the Sequence class.
+        :param other: Another instance of the Sequence class to compare to.
+        """
+        return self.sequence_str < other.sequence_str
+
     
     def __str__(self):
         """
@@ -76,7 +89,7 @@ class Sequence():
 
         :param self: An instance of the Sequence class
         """
-        return self.to_string()
+        return self.sequence_str
 
         
     def to_string(self):
