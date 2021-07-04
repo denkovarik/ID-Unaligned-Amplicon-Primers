@@ -27,17 +27,6 @@ class Reverse_Primer(Primer):
         else:
             raise Exception("Invalid sequence in Reverse_Primer class init()")
         self.index = index
-
-    
-    def __eq__(self, other):
-        """
-        The overloaded equality operator for the class.
-
-        :param self: An instance of the Reverse_Primer class.
-        :param other: Another instance of the Reverse_Primer class to compare 
-                      this instance to.
-        """
-        return str(self.sequence) == str(other)
     
 
     def binds_to(self, seq):
@@ -52,6 +41,17 @@ class Reverse_Primer(Primer):
             if not seq[len(seq)-i-1] in Sequence.Nucleotide.compl[self[i]]:
                 return False
         return True
+
+    
+    def __eq__(self, other):
+        """
+        The overloaded equality operator for the class.
+
+        :param self: An instance of the Reverse_Primer class.
+        :param other: Another instance of the Reverse_Primer class to compare 
+                      this instance to.
+        """
+        return str(self.sequence) == str(other)
 
 
     def __getitem__(self, index):
@@ -73,6 +73,23 @@ class Reverse_Primer(Primer):
         :param self: An instance of the Reverse_Primer class
         """
         return len(self.sequence)
+
+
+    def __lt__(self, other):
+        """
+        The overloaded less than operator.
+
+        :param self: An instance of the Reverse_Primer class.
+        :param other: Another instance of the Reverse_Primer class to compare to.
+        """
+        for i in range(len(self.sequence)):
+            # If both strings are same to this point and i is greater than the
+            # length of other, then this instance is greater than
+            if i > len(other):
+                return False
+            if self.sequence[len(self.sequence)-i-1] != other[len(other)-i-1]:
+                return self.sequence[len(self.sequence)-i-1] \
+                       < other[len(other)-i-1]
 
 
     def __str__(self):

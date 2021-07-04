@@ -47,7 +47,11 @@ class Reverse_Primer_Tests(unittest.TestCase):
         
         :param self: An instance of the Reverse_Primer_Tests class
         """
-        pass
+        self.assertTrue(Reverse_Primer("TAA", 0) < Reverse_Primer("AAT", 1))
+        self.assertTrue(Reverse_Primer("ATA", 0) < Reverse_Primer("AAT", 1))
+        self.assertTrue(Reverse_Primer("TAA", 0) < Reverse_Primer("ATA", 1))
+        self.assertFalse(Reverse_Primer("ATA", 0) < Reverse_Primer("ATA", 1))
+        self.assertFalse(Reverse_Primer("TAT", 0) < Reverse_Primer("ATA", 1))
  
 
     def test_eq(self):
