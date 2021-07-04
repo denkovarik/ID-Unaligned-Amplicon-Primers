@@ -15,6 +15,7 @@ from classes.Primer import Primer
 from classes.Reverse_Primer import Reverse_Primer
 from classes.Forward_Primer import Forward_Primer
 from classes.Sequence import Sequence
+from classes.Amplicon import Amplicon
 import pandas as pd
 
 
@@ -64,8 +65,6 @@ class Primer_Tests(unittest.TestCase):
                                     }
             else:
                 print("Duplicate sequence")
-        for s in test_seqs.keys():
-            print(test_seqs[s]["fP"])
         # Read in the Primers
         for ind in primers_df.index:
             index = int(primers_df['index'][ind])
@@ -73,6 +72,21 @@ class Primer_Tests(unittest.TestCase):
                                     "fP" : Forward_Primer(primers_df['fP'][ind], index),
                                     "rP" : Reverse_Primer(primers_df['rP'][ind], index)
                                 }
+        amps = []
+        total = 0
+        missing = 0
+        for key, value in test_seqs.items():
+            if test_seqs[key]["fP"] is not None:
+                the_fP = primers[test_seqs[key]["fP"]]["fP"]
+            if test_seqs[key]["rP"] is not None:
+                the_rP = primers[test_seqs[key]["rP"]]["rP"]
+            amp = Amplicon(key, the_fP, the_rP)
+            if the_fP is not None:
+                total += 1
+                if not amp.fP.binds_to(amp.sequence):
+                    missing += 1
+                    print(str(amp))
+        print(str(missing) + " non-matching primers out of " + str(total) + " total primers")
 
 
 
