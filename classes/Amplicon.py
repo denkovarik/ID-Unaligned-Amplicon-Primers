@@ -21,14 +21,14 @@ class Amplicon():
     """
     Class that is used to represent an Amplicon.
     """
-    def __init__(self, seq, fp=None, rp=None):
+    def __init__(self, seq, fP=None, rP=None):
         """
         Initializes an instance of the Amplicon class.
 
         :param self: An instance of the Amplicon class.
         :param seq: The nucleotide sequence for the amplicon
-        :param fp: The forward primer for the amplicon
-        :param rp: The reverse primer for the amplicon
+        :param fP: The forward primer for the amplicon
+        :param rP: The reverse primer for the amplicon
         """
         # Set the sequence for the amplicon
         if type(seq) == type("str"):
@@ -38,29 +38,18 @@ class Amplicon():
         else:
             raise Exception("Invalid sequence for Amplicon class")
         # Set the forward primer
-        self.fp = None
-        if fp is not None:
-            if type(fp) != type(Forward_Primer("A", 1)):
+        self.fP = None
+        if fP is not None:
+            if type(fP) != type(Forward_Primer("A", 1)):
                 raise Exception("Invalid type for Forward Primer")
-            # Check that fp binds to sequence
-            if fp.binds_to(self.sequence):    
-                self.fp = fp
-            else:
-                print("WARNING: Forward primger " + str(fp) \
-                      + " doesn't bind to sequence " + str(self.sequence) \
-                      + ". Forward primer will not be set")
+            self.fP = fP
         # Set the reverse primer
-        self.rp = None
-        if rp is not None:
-            if type(rp) != type(Reverse_Primer("A", 2)):
+        self.rP = None
+        if rP is not None:
+            if type(rP) != type(Reverse_Primer("A", 2)):
                 raise Exception("Invalid type for Reverse Primer")
-            # Check that rp binds to sequence
-            if rp.binds_to(self.sequence):    
-                self.rp = rp
-            else:
-                print("WARNING: Reverse primger " + str(rp) \
-                      + " doesn't bind to sequence " + str(self.sequence) \
-                      + ". Reverse primer will not be set")
+            # Check that rP binds to sequence
+            self.rP = rP
 
 
     def match_primers(self, fps, rps):
@@ -75,8 +64,25 @@ class Amplicon():
         # Find the matching foward primer
         for f in fps:
             if f.binds_to(self.sequence):
-                self.fp = f
+                self.fP = f
         # Find the matching reverse primer
         for r in rps:
             if r.binds_to(self.sequence):
-                self.rp = r
+                self.rP = r
+
+
+    def __str__(self):
+        """
+        Overloaded to string method for the class.
+    
+        :param self: An instance of the Amplicon class.
+        """
+        matches = ""
+        # Indicated matching nucleotides between forward primer and sequence
+        for i in range(len(self.fP)):
+            if self.fP[i] == self.sequence[i]:
+                matches += "|"
+            else:
+                matches += " "
+        amp_str = str(self.fP) + "\n" + matches + "\n" + str(self.sequence.sequence[:len(self.fP)])
+        return amp_str
