@@ -2,4 +2,7 @@
 
 # This script install dependiences for the project
 
-pip install pysam 
+# Install pysam to read .bam files
+pip install pysam
+# Install xlrd to read excel sheets with pandas
+pip install xlrd
