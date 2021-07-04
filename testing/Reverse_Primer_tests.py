@@ -22,6 +22,15 @@ class Reverse_Primer_Tests(unittest.TestCase):
     """
     Runs tests for the Reverse_Primer class.
     """
+    def test_lt(self):
+        """
+        Tests the overloaded less than operator. 
+        
+        :param self: An instance of the Reverse_Primer_Tests class
+        """
+        pass
+ 
+
     def test_eq(self):
         """
         Tests the overloaded equality operator. 
@@ -61,18 +70,22 @@ class Reverse_Primer_Tests(unittest.TestCase):
         
         :param self: An instance of the Reverse_Primer_Tests class
         """
-        test_sequence1 = "AATGCGAATGC"
-        test_sequence2 = "AAUGCGAAUGC"
-        rp_seq2 = "TTA"
-        rp_seq1 = "ACG"
-        rp1 = Reverse_Primer(rp_seq1, 10)
-        rp2 = Reverse_Primer(rp_seq2, 11)
-        seq1 = Sequence(test_sequence1)
-        seq2 = Sequence(test_sequence2)
-        self.assertTrue(rp1.binds_to(seq1))
-        self.assertTrue(rp1.binds_to(seq2))
-        self.assertFalse(rp2.binds_to(seq1))
-        self.assertFalse(rp2.binds_to(seq2))
+        # Test 1
+        test_sequence1 = "GGAGAAGGGGGAGATGTTGAGCATGTTCAGCAGCGTGGCTTCGCTGGCTCCCACTTTGTCTCCAGTCTTGATCAGCTGCACATCACTCAGGATTTCAATGGTGCCCCTGGAGATTT"
+        rp1 = Reverse_Primer("aaatctccaggggcaccattgaa", 56)
+        self.assertTrue(rp1.binds_to(Sequence(test_sequence1)))
+        # Test 2
+        test_sequence2 = "CCCATGCCTGACAAGTACTCCTTAGCACCTGTTGCTGTTGAGCTCAAATCCTTGCTGGGCAAGGATGTTCTGTTCCTGAAGGACTGTGTAGGCGCAGAAGTGGAGAAAGCCTGTGCCA"
+        rp2 = Reverse_Primer("tggcacaggctttctccacttc", 49)
+        self.assertTrue(rp2.binds_to(Sequence(test_sequence2)))
+        # Test 3
+        test_sequence3 = "TCATCTGCCCAGCCCACTTCACAGTGCCCCGTGCTGCTCATGTGCCTCCTCCCCTTTCCTCTGCAAAGTTCCCAGCTGGGCTGCAAGTCTCGGGTACCTGCAGTGTTGACAGCGCAGAGCCCTCCCGTCACCTCCAGGCAGAGTGGCCATCGCT"
+        rp3 = Reverse_Primer("agcgatggccactctgcc", 41)
+        self.assertTrue(rp3.binds_to(Sequence(test_sequence3)))
+        # Test 4
+        self.assertFalse(rp1.binds_to(Sequence(test_sequence2)))
+        self.assertFalse(rp2.binds_to(Sequence(test_sequence1)))
+        self.assertFalse(rp3.binds_to(Sequence(test_sequence2)))
 
    
     def test_init(self):

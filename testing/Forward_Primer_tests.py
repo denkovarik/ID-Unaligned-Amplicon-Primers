@@ -94,18 +94,18 @@ class Forward_Primer_Tests(unittest.TestCase):
         
         :param self: An instance of the Forward_Primer_Tests class
         """
-        test_sequence1 = "AATGCGAATGC"
-        test_sequence2 = "AAUGCGAAUGC"
-        fp_seq1 = "TTA"
-        fp_seq2 = "ACG"
-        fp1 = Forward_Primer(fp_seq1, 2)
-        fp2 = Forward_Primer(fp_seq2, 10)
-        seq1 = Sequence(test_sequence1)
-        seq2 = Sequence(test_sequence2)
-        self.assertTrue(fp1.binds_to(seq1))
-        self.assertTrue(fp1.binds_to(seq2))
-        self.assertFalse(fp2.binds_to(seq1))
-        self.assertFalse(fp2.binds_to(seq2))
+        # Test 1
+        test_sequence1     = "GGAGAAGGGGGAGATGTTGAGCATGTTCAGCAGCGTGGCTTCGCTGGCTCCCACTTTGTCTCCAGTCTTGATCAGCTGCACATCACTCAGGATTTCAATGGTGCCCCTGGAGATTT"
+        fp1 = Forward_Primer("ggagaagggggagatgttgagca", 56)
+        self.assertTrue(fp1.binds_to(Sequence(test_sequence1)))
+        # Test 2
+        test_sequence2     = "CCCATGCCTGACAAGTACTCCTTAGAGCCATTTGCTGTAGAATTCAAATCTCTGCTGGGCAAGGATGTTCTGTTCTTGAAAGACTGTGTAGGCCCAGAAGTGGAGAAAGCCTGTGCCA"
+        fp2 = Forward_Primer("cccatgcctgacaagtactccttaga", 49)
+        self.assertTrue(fp2.binds_to(Sequence(test_sequence2)))
+        # Test 3
+        test_sequence3     = "ACTGGCTCTGTTACTGGTGCTGTGCAAATGCCTAAGCAAATGCAGGTATAGGGCGTAGGGTCAAGTCTTGGTTGTTTGCATCTTGGAAGGAGGCAGAGTGGCCATCGCT"
+        fp3 = Forward_Primer("actggctctgttactggtgctg", 23)
+        self.assertTrue(fp3.binds_to(Sequence(test_sequence3)))
 
    
     def test_init(self):
