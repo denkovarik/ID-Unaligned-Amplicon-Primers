@@ -41,15 +41,31 @@ class Primer_Tests(unittest.TestCase):
         # Dictionary to contain primers
         primers = {}
         # Read in the NS_list
-        unique_seqs = set(())
+        test_seqs = {}
         for ind in output_NS_list.index:
             seq = output_NS_list['seq'][ind]
-            if not seq in unique_seqs:
-                unique_seqs.add(seq)
+            count = int(output_NS_list['count'][ind])
+            fP = output_NS_list['fP'][ind]
+            if fP != fP:
+                fP = None
+            else:
+                fP = int(fP)
+            rP = output_NS_list['rP'][ind]
+            if rP != rP:
+                rP = None
+            else:
+                fP = int(fP)
+            if not seq in test_seqs:
+                test_seqs[seq] =    {
+                                        "count" :   count, 
+                                        "ratio" :   output_NS_list['ratio'][ind],
+                                        "fP"    :   fP,
+                                        "rP"    :   fP,
+                                    }
             else:
                 print("Duplicate sequence")
-        #for s in unique_seqs:
-        #    print(s)
+        for s in test_seqs.keys():
+            print(test_seqs[s]["fP"])
         # Read in the Primers
         for ind in primers_df.index:
             index = int(primers_df['index'][ind])
