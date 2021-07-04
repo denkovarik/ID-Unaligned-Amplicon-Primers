@@ -6,10 +6,6 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd $DIR
 
-# Run the tests for the Nucleotide class
-echo "Running Tests for Nucleotide Class"
-python $DIR"/Nucleotide_tests.py"
-
 # Run the tests for the Primer class
 echo "Running Tests for Primer Class"
 python $DIR"/Primer_tests.py"

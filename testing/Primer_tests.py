@@ -15,7 +15,6 @@ from classes.Primer import Primer
 from classes.Reverse_Primer import Reverse_Primer
 from classes.Forward_Primer import Forward_Primer
 from classes.Sequence import Sequence
-from classes.Nucleotide import Nucleotide
 import pandas as pd
 
 
@@ -49,8 +48,8 @@ class Primer_Tests(unittest.TestCase):
                 unique_seqs.add(seq)
             else:
                 print("Duplicate sequence")
-        for s in unique_seqs:
-            print(s)
+        #for s in unique_seqs:
+        #    print(s)
         # Read in the Primers
         for ind in primers_df.index:
             index = int(primers_df['index'][ind])

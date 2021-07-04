@@ -12,7 +12,6 @@ import os, sys, inspect
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
-from classes.Nucleotide import Nucleotide
 from classes.Sequence import Sequence
 from classes.Forward_Primer import Forward_Primer
 from classes.Reverse_Primer import Reverse_Primer

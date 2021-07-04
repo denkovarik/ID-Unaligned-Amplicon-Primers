@@ -13,7 +13,6 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 from classes.Sequence import Sequence
-from classes.Nucleotide import Nucleotide
 from classes.Primer import Primer
 
 
@@ -50,6 +49,27 @@ class Forward_Primer(Primer):
         :param other: Another instance of the Forward_Primer class to compare.
         """
         return self.sequence < other.sequence
+
+
+    def __getitem__(self, index):
+        """
+        Overloaded function for indexing the Sequence class.
+
+        :param self: An instance of the Forward_Primer class
+        :param index: The index of the sequence to access
+        """
+        if index < 0 or index >= len(self.sequence):
+            raise Exception("Index is out of bounds")
+        return self.sequence[index]
+
+    
+    def __len__(self):
+        """
+        Overloaded function for the sequence length for the Forward_Primer class.
+
+        :param self: An instance of the Forward_Primer class
+        """
+        return len(self.sequence)
 
 
     @staticmethod

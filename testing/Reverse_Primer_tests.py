@@ -14,7 +14,6 @@ sys.path.insert(0, parentdir)
 from classes.Reverse_Primer import Reverse_Primer
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
-from classes.Nucleotide import Nucleotide
 from classes.Sequence import Sequence
 
 
@@ -22,6 +21,26 @@ class Reverse_Primer_Tests(unittest.TestCase):
     """
     Runs tests for the Reverse_Primer class.
     """
+    def test_len(self):
+        """
+        Tests the __len__() overloaded function
+        
+        :param self: An instance of the Reverse_Primer_Tests class
+        """
+        rp = Reverse_Primer("AAGTCCG", 0)
+        self.assertTrue(len(rp) == 7)
+
+
+    def test_getitem(self):
+        """
+        Tests indexing for the Reverse_Primer class
+        
+        :param self: An instance of the Reverse_Primer_Tests class
+        """
+        rp = Reverse_Primer("AAGTCCG", 0)
+        self.assertTrue(rp[3] == "T")
+
+        
     def test_lt(self):
         """
         Tests the overloaded less than operator. 

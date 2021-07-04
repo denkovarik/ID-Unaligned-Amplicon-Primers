@@ -12,7 +12,7 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 from classes.Sequence import Sequence
-from classes.Nucleotide import Nucleotide
+
 
 class Sequence_Tests(unittest.TestCase):
     """
@@ -106,7 +106,7 @@ class Sequence_Tests(unittest.TestCase):
         :param self: An instance of the Sequence_Tests class
         """
         seq = Sequence("AATTGGCC")
-        self.assertTrue(seq[0].base == "A")
+        self.assertTrue(seq[0] == "A")
 
 
     def test_init(self):
@@ -115,31 +115,16 @@ class Sequence_Tests(unittest.TestCase):
         
         :param self: An instance of the Sequence_Tests class
         """
-        # The sequence as a list of Nucleotides
-        the_sequence = [Nucleotide("A"),Nucleotide("G"),Nucleotide("A"), \
-                        Nucleotide("G"),Nucleotide("T"),Nucleotide("C"), \
-                        Nucleotide("G")]
-        sq = Sequence(the_sequence)
-        self.assertTrue(sq.to_string() == "AGAGTCG")
-        self.assertTrue(sq.sequence[0].base == "A")
-        self.assertTrue(sq.sequence[1].base == "G")
-        self.assertTrue(sq.sequence[2].base == "A")
-        self.assertTrue(sq.sequence[3].base == "G")
-        self.assertTrue(sq.sequence[4].base == "T")
-        self.assertTrue(sq.sequence[5].base == "C")
-        self.assertTrue(sq.sequence[6].base == "G")
-
         # The same sequence as a String
         the_sequence = "AGAGTCG"
         sq = Sequence(the_sequence)
-        self.assertTrue(sq.sequence[0].base == "A")
-        self.assertTrue(sq.sequence[1].base == "G")
-        self.assertTrue(sq.sequence[2].base == "A")
-        self.assertTrue(sq.sequence[3].base == "G")
-        self.assertTrue(sq.sequence[4].base == "T")
-        self.assertTrue(sq.sequence[5].base == "C")
-        self.assertTrue(sq.sequence[6].base == "G") 
-
+        self.assertTrue(sq.sequence[0] == "A")
+        self.assertTrue(sq.sequence[1] == "G")
+        self.assertTrue(sq.sequence[2] == "A")
+        self.assertTrue(sq.sequence[3] == "G")
+        self.assertTrue(sq.sequence[4] == "T")
+        self.assertTrue(sq.sequence[5] == "C")
+        self.assertTrue(sq.sequence[6] == "G") 
         # The same sequence as a list of Strings
         the_sequence = ["A","G","A","G","T","C","G"]
         error = False
@@ -151,13 +136,61 @@ class Sequence_Tests(unittest.TestCase):
         finally:
             if error:
                 self.assetTrue(False)
-        #self.assertTrue(sq.sequence[0].base == "A")
-        #self.assertTrue(sq.sequence[1].base == "G")
-        #self.assertTrue(sq.sequence[2].base == "A")
-        #self.assertTrue(sq.sequence[3].base == "G")
-        #self.assertTrue(sq.sequence[4].base == "T")
-        #self.assertTrue(sq.sequence[5].base == "C")
-        #self.assertTrue(sq.sequence[6].base == "G") 
+        # Testing sequence with invalid characters
+        the_sequence = "AGAGPTCG"
+        error = False
+        try:
+            sq = Sequence(the_sequence)
+            error = True
+        except:
+            self.assertTrue(True)
+        finally:
+            if error:
+                self.assetTrue(False)
+
+    
+    def test_class_var_usage(self):
+        """
+        Testing for expected usage for Sequence class variables.
+
+        :param self: An instance of the Sequence_Tests class
+        """
+        # Testing for correct nucleotide base symbols case insensitive
+        self.assertTrue("A" in Sequence.Nucleotide.valid_symbols)
+        self.assertTrue("C" in Sequence.Nucleotide.valid_symbols)
+        self.assertTrue("G" in Sequence.Nucleotide.valid_symbols)
+        self.assertTrue("T" in Sequence.Nucleotide.valid_symbols)
+        self.assertTrue("U" in Sequence.Nucleotide.valid_symbols)
+        self.assertTrue("a" in Sequence.Nucleotide.valid_symbols)
+        self.assertTrue("c" in Sequence.Nucleotide.valid_symbols)
+        self.assertTrue("g" in Sequence.Nucleotide.valid_symbols)
+        self.assertTrue("t" in Sequence.Nucleotide.valid_symbols)
+        self.assertTrue("u" in Sequence.Nucleotide.valid_symbols)
+        # Testing for identifying correct nucleotide compliments
+        self.assertTrue("A" in Sequence.Nucleotide.compl["T"])
+        self.assertTrue("a" in Sequence.Nucleotide.compl["T"])
+        self.assertTrue("A" in Sequence.Nucleotide.compl["t"])
+        self.assertTrue("a" in Sequence.Nucleotide.compl["t"])
+        self.assertTrue("A" in Sequence.Nucleotide.compl["U"])
+        self.assertTrue("a" in Sequence.Nucleotide.compl["U"])
+        self.assertTrue("A" in Sequence.Nucleotide.compl["u"])
+        self.assertTrue("a" in Sequence.Nucleotide.compl["u"])
+        self.assertTrue("C" in Sequence.Nucleotide.compl["G"])
+        self.assertTrue("c" in Sequence.Nucleotide.compl["G"])
+        self.assertTrue("C" in Sequence.Nucleotide.compl["g"])
+        self.assertTrue("c" in Sequence.Nucleotide.compl["g"])
+        self.assertTrue("G" in Sequence.Nucleotide.compl["C"])
+        self.assertTrue("g" in Sequence.Nucleotide.compl["C"])
+        self.assertTrue("G" in Sequence.Nucleotide.compl["c"])
+        self.assertTrue("g" in Sequence.Nucleotide.compl["c"])
+        self.assertTrue("T" in Sequence.Nucleotide.compl["A"])
+        self.assertTrue("t" in Sequence.Nucleotide.compl["A"])
+        self.assertTrue("T" in Sequence.Nucleotide.compl["a"])
+        self.assertTrue("t" in Sequence.Nucleotide.compl["a"])
+        self.assertTrue("U" in Sequence.Nucleotide.compl["A"])
+        self.assertTrue("u" in Sequence.Nucleotide.compl["A"])
+        self.assertTrue("U" in Sequence.Nucleotide.compl["a"])
+        self.assertTrue("u" in Sequence.Nucleotide.compl["a"])
 
         
     def test_execution(self):

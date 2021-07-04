@@ -11,7 +11,6 @@ import unittest
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
-from classes.Nucleotide import Nucleotide
 from classes.Sequence import Sequence
 from classes.Forward_Primer import Forward_Primer
 
@@ -20,6 +19,26 @@ class Forward_Primer_Tests(unittest.TestCase):
     """
     Runs tests for the Forward_Primer class.
     """        
+    def test_len(self):
+        """
+        Tests the __len__() overloaded function
+        
+        :param self: An instance of the Forward_Primer_Tests class
+        """
+        fp = Forward_Primer("AAGTCCG", 0)
+        self.assertTrue(len(fp) == 7)
+
+
+    def test_getitem(self):
+        """
+        Tests indexing for the Reverse_Primer class
+        
+        :param self: An instance of the Reverse_Primer_Tests class
+        """
+        fp = Forward_Primer("AAGTCCG", 0)
+        self.assertTrue(fp[3] == "T")
+
+        
     def test_lt(self):
         """
         Tests the overload less than operator.
