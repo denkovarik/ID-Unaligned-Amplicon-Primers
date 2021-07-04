@@ -48,10 +48,6 @@ class Sequence():
         """
         # Check the type of seq. Only strings are accepted
         if type(seq) == type("string"):
-            # Make sure that valid sequence was passed in
-            for nuc in seq:
-                if not nuc in Sequence.Nucleotide.valid_symbols:
-                    raise Exception("Invalid characters in sequence")
             self.sequence = seq.upper()
         else:
             raise Exception("Invalid typesequence of nucleotides for Sequence class.")

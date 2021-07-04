@@ -155,17 +155,6 @@ class Sequence_Tests(unittest.TestCase):
         finally:
             if error:
                 self.assetTrue(False)
-        # Testing sequence with invalid characters
-        the_sequence = "AGAGPTCG"
-        error = False
-        try:
-            sq = Sequence(the_sequence)
-            error = True
-        except:
-            self.assertTrue(True)
-        finally:
-            if error:
-                self.assetTrue(False)
 
     
     def test_class_var_usage(self):
