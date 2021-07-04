@@ -11,12 +11,34 @@ import os, sys, inspect
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
-from classes.Nucleotide import Nucleotide
+
 
 class Sequence():
     """
     Class that is used to represent a Sequence.
     """
+    class Nucleotide():
+        """
+        Inner class to provide useful functionality in regards to nucleotides. 
+        This includes identifying which symbols are valid nucleotides whether
+        to symbols for nucleotides are compliments of each other.
+        """
+        valid_symbols = set(("A","C","G","T","U","a","c","g","t","u"))
+        compl = {
+                    "A" : set(("t","T","u","U")),
+                    "C" : set(("g","G")),
+                    "G" : set(("c","C")),
+                    "T" : set(("a","A")), 
+                    "U" : set(("a","A")),
+                    "a" : set(("t","T","u","U")),
+                    "c" : set(("g","G")),
+                    "g" : set(("c","C")),
+                    "t" : set(("a","A")), 
+                    "u" : set(("a","A")),
+                }
+        pass
+
+
     def __init__(self, seq):
         """
         Initializes an instance of the Sequence class.
@@ -24,22 +46,15 @@ class Sequence():
         :param self: An instance of the Sequence class.
         :param seq: A sequence of nucleotides as a list of Nucleotides.
         """
+        # Check the type of seq. Only strings are accepted
         if type(seq) == type("string"):
-            self.sequence = []
-            for c in seq:
-                self.sequence.append(Nucleotide(c))
-        # See if seq is a list
-        elif type(seq) == type([]):
-            ref = Nucleotide("A")
+            # Make sure that valid sequence was passed in
             for nuc in seq:
-                if type(nuc) != type(ref):
-                    raise Exception("Invalid sequence of nucleotides for Sequence class.")
-            self.sequence = seq
+                if not nuc in Sequence.Nucleotide.valid_symbols:
+                    raise Exception("Invalid characters in sequence")
+            self.sequence = seq.upper()
         else:
-            raise Exception("Invalid sequence of nucleotides for Sequence class.")
-        # Change sequence from list to tuple so is unchangeable
-        self.sequence = tuple(self.sequence)
-        self.sequence_str = self.to_string()
+            raise Exception("Invalid typesequence of nucleotides for Sequence class.")
     
 
     def __eq__(self, other):
@@ -80,7 +95,7 @@ class Sequence():
         :param self: An instance of the Sequence class.
         :param other: Another instance of the Sequence class to compare to.
         """
-        return self.sequence_str < other.sequence_str
+        return self.sequence < other.sequence
 
     
     def __str__(self):
@@ -89,16 +104,4 @@ class Sequence():
 
         :param self: An instance of the Sequence class
         """
-        return self.sequence_str
-
-        
-    def to_string(self):
-        """
-        Returns the sequence as a String.        
-
-        :param self: An instance of the Sequence class.
-        """
-        seq = ""
-        for c in self.sequence:
-            seq += str(c)
-        return seq
+        return self.sequence
