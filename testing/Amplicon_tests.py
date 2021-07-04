@@ -21,6 +21,33 @@ class Amplicon_Tests(unittest.TestCase):
     """
     Runs tests for the Amplicon class.
     """
+    def test_str(self):
+        """
+        Tests the overloaded to string function for the class.
+        
+        :param self: An instance of the Amplicon_Tests class
+        """
+        fp          = Forward_Primer("AATGGC", 0)
+        test_seq    = Sequence("AATGGCTAATGCCTGGAATAGGTAGTCA")
+        rp          = Reverse_Primer("TGACT", 1)
+        self.assertTrue(fp.binds_to(test_seq))        
+        self.assertTrue(rp.binds_to(test_seq))
+        amp = Amplicon(test_seq, fp, rp) 
+        expected    = "AATGGC\n"
+        expected   += "||||||\n" 
+        expected   += "AATGGC"
+        self.assertTrue(str(amp) == expected)
+        # Amplicon with mismatches
+        fp          = Forward_Primer("AATAGC", 0)
+        test_seq    = Sequence("AATGGCTAATGCCTGGAATAGGTAGTCA")
+        rp          = Reverse_Primer("TGACT", 1)
+        amp = Amplicon(test_seq, fp, rp) 
+        expected    = "AATAGC\n"
+        expected   += "||| ||\n" 
+        expected   += "AATGGC"
+        self.assertTrue(str(amp) == expected)
+
+
     def test_match_primers(self):
         """
         Tests the Amplicon class member function 'match_primers()'
@@ -47,17 +74,17 @@ class Amplicon_Tests(unittest.TestCase):
                 ]
         # Run the Test for the forward primers
         amp.match_primers(fps, rps)
-        self.assertTrue(amp.fp == fps[3])
-        self.assertFalse(amp.fp == fps[1])
-        self.assertFalse(amp.fp == fps[2])
-        self.assertFalse(amp.fp == fps[0])
-        self.assertFalse(amp.fp == fps[4])
+        self.assertTrue(amp.fP == fps[3])
+        self.assertFalse(amp.fP == fps[1])
+        self.assertFalse(amp.fP == fps[2])
+        self.assertFalse(amp.fP == fps[0])
+        self.assertFalse(amp.fP == fps[4])
         # Run the test for the reverse primers
-        self.assertTrue(amp.rp == rps[3])
-        self.assertFalse(amp.rp == rps[0])
-        self.assertFalse(amp.rp == rps[1])
-        self.assertFalse(amp.rp == rps[2])
-        self.assertFalse(amp.rp == rps[4])
+        self.assertTrue(amp.rP == rps[3])
+        self.assertFalse(amp.rP == rps[0])
+        self.assertFalse(amp.rP == rps[1])
+        self.assertFalse(amp.rP == rps[2])
+        self.assertFalse(amp.rP == rps[4])
         
 
     def test_init(self):
@@ -70,20 +97,20 @@ class Amplicon_Tests(unittest.TestCase):
         # Testing init with String sequence
         amp = Amplicon(test_seq)
         self.assertTrue(str(amp.sequence) == test_seq)
-        self.assertTrue(amp.fp == None)
-        self.assertTrue(amp.rp == None) 
+        self.assertTrue(amp.fP == None)
+        self.assertTrue(amp.rP == None) 
         # Testing init with Sequence object sequence
         amp = Amplicon(Sequence(test_seq)) 
         self.assertTrue(str(amp.sequence) == test_seq)
-        self.assertTrue(amp.fp == None)
-        self.assertTrue(amp.rp == None) 
+        self.assertTrue(amp.fP == None)
+        self.assertTrue(amp.rP == None) 
         # Testing with forward primer
         amp = Amplicon(Sequence(test_seq), Forward_Primer("AAG", 0))
-        self.assertTrue(amp.fp == Forward_Primer("AAG", 0))
+        self.assertTrue(amp.fP == Forward_Primer("AAG", 0))
         # Testing with reverse primer
-        amp = Amplicon(Sequence(test_seq), fp=None, rp=Reverse_Primer("TTG", 1))
-        self.assertTrue(amp.fp == None)
-        self.assertTrue(amp.rp == Reverse_Primer("TTG", 5))
+        amp = Amplicon(Sequence(test_seq), fP=None, rP=Reverse_Primer("TTG", 1))
+        self.assertTrue(amp.fP == None)
+        self.assertTrue(amp.rP == Reverse_Primer("TTG", 5))
 
 
     def test_execution(self):
