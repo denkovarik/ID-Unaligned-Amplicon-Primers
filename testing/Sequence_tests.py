@@ -18,6 +18,25 @@ class Sequence_Tests(unittest.TestCase):
     """
     Runs tests for the Sequence class.
     """
+    def test_hash(self):
+        """
+        Tests the overloaded __hash__ function so that Sequence class can be
+        used as key in a python dictionary.
+
+        :param self: An instance of the Sequence_Tests class
+        """
+        sq1 = Sequence("AAG")
+        sq2 = Sequence("TTG")
+        sq3 = Sequence("GGT")
+        seqs = {}
+        seqs[sq1] = "Hi"        
+        seqs[sq2] = "there"
+        seqs[sq3] = "friend"
+        self.assertTrue(seqs[sq1] == "Hi")
+        self.assertTrue(seqs[sq2] == "there")
+        self.assertTrue(seqs[sq3] == "friend")
+
+        
     def test_sort(self):
         """
         Tests sorting a list of sequences
