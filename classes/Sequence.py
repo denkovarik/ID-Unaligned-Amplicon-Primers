@@ -78,6 +78,15 @@ class Sequence():
             raise Exception("Index is out of bounds")
         return self.sequence[index]
 
+
+    def __hash__(self):
+        """
+        Overloaded hash function for the Sequence class.
+
+        :param self: An instance of the Sequence class
+        """
+        return hash(self.sequence)
+
     
     def __len__(self):
         """
