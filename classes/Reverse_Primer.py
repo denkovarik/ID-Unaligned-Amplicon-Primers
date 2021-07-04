@@ -49,10 +49,8 @@ class Reverse_Primer(Primer):
         :param self: An instance of the Primer class
         :param seq: The sequence to try to bind to as a Sequence object
         """
-        seq_start = len(seq.sequence) - len(self.sequence)
         for i in range(len(self.sequence)):
-            seq_i = seq_start + i
-            if not self.sequence[i].complement(seq.sequence[seq_i]):
+            if not self.sequence[i].complement(seq[len(seq)-i-1]):
                 return False
         return True
 

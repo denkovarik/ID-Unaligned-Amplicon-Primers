@@ -81,9 +81,7 @@ class Forward_Primer(Primer):
         :param self: An instance of the Primer class
         :param seq: The sequence to try to bind to as a Sequence object
         """
-        if len(self.sequence) > len(seq):
-            return False
         for i in range(len(self.sequence)):
-            if not self.sequence[i].complement(seq[i]):
+            if self.sequence[i] != seq[i]:
                 return False
         return True
