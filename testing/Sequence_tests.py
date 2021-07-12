@@ -11,13 +11,103 @@ import unittest
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
+from classes.Primer import Primer
+from classes.Reverse_Primer import Reverse_Primer
+from classes.Forward_Primer import Forward_Primer
 from classes.Sequence import Sequence
+from classes.Amplicon import Amplicon
+import pandas as pd
 
 
 class Sequence_Tests(unittest.TestCase):
     """
     Runs tests for the Sequence class.
     """
+    def primer_binary_srch(self):
+        """
+        Tests the Sequence class 'fp_binary_srch()' on its ability to find a 
+        forward primer that it binds to from a list of forward primers
+        
+        :param self: An instance of the Primer_Tests class
+        """
+        # Read in the forward primers
+        seq = Sequence('GCAGCTTTTGGAGTGGTTTTCATGTAAGGTTGCTGCT')
+        path = parentdir + "/primers.xlsx"
+        self.assertTrue(os.path.isfile(path))
+        df = pd.read_excel(path)
+        primers = []
+        for index, row in df.iterrows():
+            primers += [Forward_Primer(row['fP'], index)]
+        primers = Primer.sort(primers)
+        # Find the matching fP
+        fP = seq.primer_binary_srch(primers)
+        self.assertTrue(fP.sequence == 'GCAGCTTTTGGAGTGGTTTTCATGT')
+        # Read in the reverse primers
+        seq = Sequence('AAAAGGGGGAAAAGGGGAAAGTGCAGAGTCTTTGGGAGAAATGGC')
+        path = parentdir + "/primers.xlsx"
+        self.assertTrue(os.path.isfile(path))
+        df = pd.read_excel(path)
+        primers = []
+        for index, row in df.iterrows():
+            primers += [Reverse_Primer(row['rP'], index)]
+        primers.sort()
+        # Find the matching rP
+        rP = seq.primer_binary_srch(primers)
+        self.assertTrue(rP.sequence == 'GCCATTTCTCCCAAAGACTCTGCA')
+
+
+    def test_primer_srch(self):
+        """
+        Tests the Sequence class 'fp_search()' on its ability to find a forward 
+        primer that it binds to.
+        
+        :param self: An instance of the Primer_Tests class
+        """
+        # Read in the forward primers
+        seq = Sequence('GCAGCTTTTGGAGTGGTTTTCATGTAAGGTTGCTGCT')
+        path = parentdir + "/given/input_given/primers.xlsx"
+        self.assertTrue(os.path.isfile(path))
+        df = pd.read_excel(path)
+        primers = []
+        for index, row in df.iterrows():
+            primers += [Forward_Primer(row['fP'], index)]
+        # Find the matching fP
+        fP = seq.primer_srch(primers)
+        self.assertTrue(fP.sequence == 'GCAGCTTTTGGAGTGGTTTTCATGT')
+        # Read in the reverse primers
+        seq = Sequence('AAAAGGGGGAAAAGGGGAAAGTGCAGAGTCTTTGGGAGAAATGGC')
+        path = parentdir + "/given/input_given/primers.xlsx"
+        self.assertTrue(os.path.isfile(path))
+        df = pd.read_excel(path)
+        primers = []
+        for index, row in df.iterrows():
+            primers += [Reverse_Primer(row['rP'], index)]
+        primers.sort()
+        # Find the matching rP
+        rP = seq.primer_srch(primers)
+        self.assertTrue(rP.sequence == 'GCCATTTCTCCCAAAGACTCTGCA')
+
+
+    def test_num_h_bonds(self):
+        """ 
+        Tests the Sequence.Nucleotide class on its ability to determine the 
+        number of hydrogen bonds between a given nucleotide and its 
+        compliment nucleotide
+        
+        :param self: An instance of the Sequence_Tests class
+        """
+        self.assertTrue(Sequence.Nucleotide.h_bonds["A"] == 2)
+        self.assertTrue(Sequence.Nucleotide.h_bonds["a"] == 2)
+        self.assertTrue(Sequence.Nucleotide.h_bonds["T"] == 2)
+        self.assertTrue(Sequence.Nucleotide.h_bonds["t"] == 2)
+        self.assertTrue(Sequence.Nucleotide.h_bonds["U"] == 2)
+        self.assertTrue(Sequence.Nucleotide.h_bonds["u"] == 2)
+        self.assertTrue(Sequence.Nucleotide.h_bonds["G"] == 3)
+        self.assertTrue(Sequence.Nucleotide.h_bonds["g"] == 3)
+        self.assertTrue(Sequence.Nucleotide.h_bonds["C"] == 3)
+        self.assertTrue(Sequence.Nucleotide.h_bonds["c"] == 3)
+
+
     def test_hash(self):
         """
         Tests the overloaded __hash__ function so that Sequence class can be
