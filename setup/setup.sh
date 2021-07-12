@@ -10,3 +10,7 @@ pip install xlrd
 pip install pandas
 # Install progress bar
 pip install progress tqdm
+# Install xlwt
+pip install xlwt
+# Install openpyxl
+pip install openpyxl

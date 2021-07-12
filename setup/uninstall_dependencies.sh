@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script uninstall the dependencies for the project.
+# This script will uninstall the dependencies for the project.
 
 # Uninstall pysam
 pip uninstall pysam
@@ -10,3 +10,7 @@ pip uninstall xlrd
 pip uninstall pandas
 # Uninstall progress bar
 pip uninstall progress tqdm
+# Uninstall xlwt
+pip uninstall xlwt
+# Uninstall openpyxl
+pip Uninstall openpyxl
