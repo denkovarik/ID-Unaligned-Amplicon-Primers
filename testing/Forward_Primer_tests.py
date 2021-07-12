@@ -13,12 +13,85 @@ parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 from classes.Sequence import Sequence
 from classes.Forward_Primer import Forward_Primer
+import pandas as pd
+from testing.sol import *
 
 
 class Forward_Primer_Tests(unittest.TestCase):
     """
     Runs tests for the Forward_Primer class.
-    """        
+    """         
+    def test_forward_primer_sort(self):
+        """
+        Tests the Forward_Primer class 'sort()' on its ability to sort forward 
+        primers by sequence.
+        
+        :param self: An instance of the Primer_Tests class
+        """
+        # Read in the forward primers
+        path = parentdir + "/given/input_given/primers.xlsx"
+        self.assertTrue(os.path.isfile(path))
+        df = pd.read_excel(path)
+        primers = []
+        for index, row in df.iterrows():
+            primers += [Forward_Primer(row['fP'], index)]
+
+        primers = Forward_Primer.sort(primers)
+        self.assertTrue(primers == forward_primer_sort_exp)
+
+
+    def test_gt_seq(self):
+        """
+        Tests the overload less than operator with a sequence.
+
+        :param self: An instance of the Forward_Primer_Tests class
+        """
+        seq1 = "AAAA"
+        seq2 = "AAACAATTGCT"
+        # Control for test
+        self.assertTrue(seq1 < seq2) 
+        # Test case 1
+        self.assertTrue(Forward_Primer(seq1, 0) < Sequence(seq2))
+        # Test case 2
+        self.assertTrue(Forward_Primer(seq1, 0) < Sequence(seq2.lower()))
+        seq1 = "AATGGCATGGC"
+        seq2 = "GGTACCTAAGC"
+        # Control for test
+        self.assertTrue(seq1 < seq2) 
+        # The test
+        self.assertTrue(Forward_Primer(seq1, 0) < Sequence(seq2.lower()))
+    
+
+    def test_lt_seq(self):
+        """
+        Tests the overload less than operator with a sequence.
+
+        :param self: An instance of the Forward_Primer_Tests class
+        """
+        seq1 = "AAAA"
+        seq2 = "AAACAATTGCT"
+        # Control for test
+        self.assertTrue(seq1 < seq2) 
+        # Test case 1
+        self.assertTrue(Forward_Primer(seq1, 0) < Sequence(seq2))
+        # Test case 2
+        self.assertTrue(Forward_Primer(seq1, 0) < Sequence(seq2.lower()))
+        seq1 = "AATGGCATGGC"
+        seq2 = "GGTACCTAAGC"
+        # Control for test
+        self.assertTrue(seq1 < seq2) 
+        # The test
+        self.assertTrue(Forward_Primer(seq1, 0) < Sequence(seq2.lower()))
+        # Test case 3
+        self.assertTrue(Forward_Primer(seq1, 0) < Sequence(seq2.lower()))
+        seq1 = "ATGCTT"
+        seq2 = "ATGCTTGGTTG"
+        # Control for test
+        self.assertTrue(seq1 < seq2) 
+        # The test
+        self.assertFalse(Forward_Primer(seq1, 0) < Sequence(seq2.lower()))
+
+
     def test_len(self):
         """
         Tests the __len__() overloaded function
@@ -39,6 +112,28 @@ class Forward_Primer_Tests(unittest.TestCase):
         self.assertTrue(fp[3] == "T")
 
         
+    def test_gt(self):
+        """
+        Tests the overload greater than operator.
+
+        :param self: An instance of the Forward_Primer_Tests class
+        """
+        seq1 = "AAAA"
+        seq2 = "AAAC"
+        # Control for test
+        self.assertTrue(seq2 > seq1) 
+        # Test case 1
+        self.assertTrue(Forward_Primer(seq2, 0) > Forward_Primer(seq1, 21))
+        # Test case 2
+        self.assertTrue(Forward_Primer(seq1, 0) < Forward_Primer(seq2.lower(), 21))
+        seq1 = "AATGGCATGGC"
+        seq2 = "GGTACCTAAGC"
+        # Control for test
+        self.assertTrue(seq2 > seq1) 
+        # The test
+        self.assertTrue(Forward_Primer(seq2, 0) > Forward_Primer(seq1.lower(), 21))
+
+        
     def test_lt(self):
         """
         Tests the overload less than operator.
@@ -49,8 +144,16 @@ class Forward_Primer_Tests(unittest.TestCase):
         seq2 = "AAAC"
         # Control for test
         self.assertTrue(seq1 < seq2) 
-        # The test
+        # Test case 1
         self.assertTrue(Forward_Primer(seq1, 0) < Forward_Primer(seq2, 21))
+        # Test case 2
+        self.assertTrue(Forward_Primer(seq1, 0) < Forward_Primer(seq2.lower(), 21))
+        seq1 = "AATGGCATGGC"
+        seq2 = "GGTACCTAAGC"
+        # Control for test
+        self.assertTrue(seq1 < seq2) 
+        # The test
+        self.assertTrue(Forward_Primer(seq1, 0) < Forward_Primer(seq2.lower(), 21))
 
 
     def test_sort(self):
