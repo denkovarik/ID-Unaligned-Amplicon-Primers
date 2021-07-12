@@ -5,6 +5,23 @@ from classes.Reverse_Primer import Reverse_Primer
 from classes.Forward_Primer import Forward_Primer
 from classes.Sequence import Sequence
 from classes.Primer_Pairs import *
+import numpy as np
+import plotly.express as px
+import math
+
+
+def create_heat_map(pairs):
+    """
+    Creates a heat map to visualize the primer pairs.
+
+    :param pairs: The primer pairs to map.
+    """
+    tit = "Heat Map for Primer Pairs Producing Unaligned Amplicons"
+    data = np.zeros((len(pairs), len(pairs)))
+    for p in pairs:
+        data[p.fP][p.rP] = math.log10(p.count)
+    fig = px.imshow(data, labels=dict(x='fP', y='rP'),title=tit)
+    fig.show()
 
 
 def create_primer_pairs(amplicons):

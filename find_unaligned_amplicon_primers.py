@@ -68,6 +68,7 @@ amplicons.sort(reverse=True)
 write_output_NS_list(amplicons, counts['total'], args)
 pairs = create_primer_pairs(amplicons)
 write_output_NS_Pairs(pairs, args)
+create_heat_map(pairs)
 print("")
 print("Output excel files " + args['--output_NS_list'] + " and " \
         + args['--output_NS_pairs'] + " have been written.")
