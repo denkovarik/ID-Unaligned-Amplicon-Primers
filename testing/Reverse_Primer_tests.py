@@ -14,13 +14,53 @@ sys.path.insert(0, parentdir)
 from classes.Reverse_Primer import Reverse_Primer
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
-from classes.Sequence import Sequence
+from classes.Sequence import *
+import pandas as pd
 
 
 class Reverse_Primer_Tests(unittest.TestCase):
     """
     Runs tests for the Reverse_Primer class.
     """
+    def test_reverse_primer_sort(self):
+        """
+        Tests the Reverse_Primer class 'sort()' on its ability to sort forward 
+        primers by sequence.
+        
+        :param self: An instance of the Reverse_Primer_Tests class
+        """
+        # Read in the forward primers
+        path = parentdir + "/given/input_given/primers.xlsx"
+        self.assertTrue(os.path.isfile(path))
+        df = pd.read_excel(path)
+        primers = []
+        for index, row in df.iterrows():
+            primers += [Reverse_Primer(row['rP'], index)]
+
+        primers.sort()
+    
+
+    def test_make_reverse_comp(self):
+        """
+        Creates the reverse compliment of the rP. This will make 
+        sorting rPs and searching to matching sequences easier.
+
+        :param self: An instance of the Reverse_Primer class.
+        """
+        # Read in the reverse primers
+        path = parentdir + "/given/input_given/primers.xlsx"
+        self.assertTrue(os.path.isfile(path))
+        df = pd.read_excel(path)
+        primers = []
+        for index, row in df.iterrows():
+            primers += [Reverse_Primer(row['rP'], index)]
+        seq = "AATTGCCTAGG"
+        rc  = "CCTAGGCAATT"
+        rp = Reverse_Primer(seq, 0)
+        rp.make_reverse_comp()
+        self.assertTrue(rp.reverse_comp == rc)
+
+
     def test_len(self):
         """
         Tests the __len__() overloaded function
@@ -41,18 +81,45 @@ class Reverse_Primer_Tests(unittest.TestCase):
         self.assertTrue(rp[3] == "T")
 
         
+    def test_gt(self):
+        """
+        Tests the overloaded greater than operator. 
+        
+        :param self: An instance of the Reverse_Primer_Tests class
+        """
+        # Test Case 1
+        seq1 = "GGCCTAATTACCCAGTGAACCGTAAT"
+        seq2 = "GCTTCTCAGTCTTGGTGCTTCTGAC"
+        self.assertTrue(Reverse_Primer(seq2, 0) > Reverse_Primer(seq1, 1))
+        # Test Case 2 
+        seq1 = "CATCTTCCATAAAATGATTGTGATAGAAATGTCACT"
+        seq2 = "GTGCAGGGGGTTGCAGGAG"
+        self.assertTrue(Reverse_Primer(seq2, 0) > Reverse_Primer(seq1, 1))
+        # Test Case 3 
+        seq1 = "GGTATTATCATTGGTCTCATCCTCTAGGTCAATG"
+        rp = "CATTGACCTAGAGGATGAGACCATTGAA"
+        self.assertTrue(Reverse_Primer(rp, 0) > Sequence(seq1))
+
+        
     def test_lt(self):
         """
         Tests the overloaded less than operator. 
         
         :param self: An instance of the Reverse_Primer_Tests class
         """
-        self.assertTrue(Reverse_Primer("TAA", 0) < Reverse_Primer("AAT", 1))
-        self.assertTrue(Reverse_Primer("ATA", 0) < Reverse_Primer("AAT", 1))
-        self.assertTrue(Reverse_Primer("TAA", 0) < Reverse_Primer("ATA", 1))
-        self.assertFalse(Reverse_Primer("ATA", 0) < Reverse_Primer("ATA", 1))
-        self.assertFalse(Reverse_Primer("TAT", 0) < Reverse_Primer("ATA", 1))
- 
+        # Test Case 1
+        seq1 = "GGCCTAATTACCCAGTGAACCGTAAT"
+        seq2 = "GCTTCTCAGTCTTGGTGCTTCTGAC"
+        self.assertTrue(Reverse_Primer(seq1, 0) < Reverse_Primer(seq2, 1))
+        # Test Case 2 
+        seq1 = "CATCTTCCATAAAATGATTGTGATAGAAATGTCACT"
+        seq2 = "GTGCAGGGGGTTGCAGGAG"
+        self.assertTrue(Reverse_Primer(seq1, 0) < Reverse_Primer(seq2, 1))
+        # Test Case 3 
+        seq1 = "GGTATTATCATTGGTCTCATCCTCTAGGTCAATG"
+        rp = "CATTGACCTAGAGGATGAGACCATTGAT"
+        self.assertTrue(Reverse_Primer(rp, 0) < Sequence(seq1))
+
 
     def test_eq(self):
         """
