@@ -16,5 +16,5 @@ pip uninstall xlwt
 pip uninstall openpyxl
 # Uninstall NumPy
 pip uninstall numpy
-# Uninstall Seqborn
-pip uninstall seaborn
+# Install Plotly
+pip install plotly

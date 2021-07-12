@@ -16,5 +16,5 @@ pip install xlwt
 pip install openpyxl
 # Install NumPy
 pip install numpy
-# Install Seqborn
-pip install seaborn
+# Install Plotly
+pip install plotly
