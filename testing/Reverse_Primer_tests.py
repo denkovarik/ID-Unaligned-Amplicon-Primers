@@ -94,11 +94,7 @@ class Reverse_Primer_Tests(unittest.TestCase):
         # Test Case 2 
         seq1 = "CATCTTCCATAAAATGATTGTGATAGAAATGTCACT"
         seq2 = "GTGCAGGGGGTTGCAGGAG"
-        self.assertTrue(Reverse_Primer(seq2, 0) > Reverse_Primer(seq1, 1))
-        # Test Case 3 
-        seq1 = "GGTATTATCATTGGTCTCATCCTCTAGGTCAATG"
-        rp = "CATTGACCTAGAGGATGAGACCATTGAA"
-        self.assertTrue(Reverse_Primer(rp, 0) > Sequence(seq1))
+        self.assertTrue(Reverse_Primer(seq1, 0) > Reverse_Primer(seq2, 1))
 
         
     def test_lt(self):
@@ -114,7 +110,7 @@ class Reverse_Primer_Tests(unittest.TestCase):
         # Test Case 2 
         seq1 = "CATCTTCCATAAAATGATTGTGATAGAAATGTCACT"
         seq2 = "GTGCAGGGGGTTGCAGGAG"
-        self.assertTrue(Reverse_Primer(seq1, 0) < Reverse_Primer(seq2, 1))
+        self.assertTrue(Reverse_Primer(seq2, 0) < Reverse_Primer(seq1, 1))
         # Test Case 3 
         seq1 = "GGTATTATCATTGGTCTCATCCTCTAGGTCAATG"
         rp = "CATTGACCTAGAGGATGAGACCATTGAT"
