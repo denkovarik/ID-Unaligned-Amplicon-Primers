@@ -28,6 +28,20 @@ class Forward_Primer(Primer):
         else:
             raise Exception("Invalid sequence in Forward_Primer class init()")
         self.index = index
+    
+
+    def binds_to(self, seq):
+        """
+        Determines if this instance of the Forward_Primer class can bind
+        to the Sequence object 'seq'.
+
+        :param self: An instance of the Primer class
+        :param seq: The sequence to try to bind to as a Sequence object
+        """
+        for i in range(len(self.sequence)):
+            if self.sequence[i] != seq[i]:
+                return False
+        return True
 
     
     def __eq__(self, other):
@@ -48,6 +62,10 @@ class Forward_Primer(Primer):
         :param self: An instance of the Forward_Primer class.
         :param other: Another instance of the Forward_Primer class to compare.
         """
+        if type(other.sequence) == type(""):
+            if self.binds_to(other):
+                return False
+            return self.sequence.sequence < other.sequence
         return self.sequence < other.sequence
 
 
@@ -91,17 +109,3 @@ class Forward_Primer(Primer):
         :param self: An instance of the Forward_Primer class
         """
         return str(self.sequence)
-    
-
-    def binds_to(self, seq):
-        """
-        Determines if this instance of the Forward_Primer class can bind
-        to the Sequence object 'seq'.
-
-        :param self: An instance of the Primer class
-        :param seq: The sequence to try to bind to as a Sequence object
-        """
-        for i in range(len(self.sequence)):
-            if self.sequence[i] != seq[i]:
-                return False
-        return True
