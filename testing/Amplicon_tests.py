@@ -21,33 +21,6 @@ class Amplicon_Tests(unittest.TestCase):
     """
     Runs tests for the Amplicon class.
     """
-    def test_str(self):
-        """
-        Tests the overloaded to string function for the class.
-        
-        :param self: An instance of the Amplicon_Tests class
-        """
-        fp          = Forward_Primer("AATGGC", 0)
-        test_seq    = Sequence("AATGGCTAATGCCTGGAATAGGTAGTCA")
-        rp          = Reverse_Primer("TGACT", 1)
-        self.assertTrue(fp.binds_to(test_seq))        
-        self.assertTrue(rp.binds_to(test_seq))
-        amp = Amplicon(test_seq, fp, rp) 
-        expected    = "AATGGC\n"
-        expected   += "||||||\n" 
-        expected   += "AATGGC"
-        self.assertTrue(str(amp) == expected)
-        # Amplicon with mismatches
-        fp          = Forward_Primer("AATAGC", 0)
-        test_seq    = Sequence("AATGGCTAATGCCTGGAATAGGTAGTCA")
-        rp          = Reverse_Primer("TGACT", 1)
-        amp = Amplicon(test_seq, fp, rp) 
-        expected    = "AATAGC\n"
-        expected   += "||| ||\n" 
-        expected   += "AATGGC"
-        self.assertTrue(str(amp) == expected)
-
-
     def test_match_primers(self):
         """
         Tests the Amplicon class member function 'match_primers()'
