@@ -1,5 +1,6 @@
 # Kovarik Bioinformatics Testing for NuProbe Scientist I
 
+![image](https://raw.githubusercontent.com/denkovarik/Kovarik-BI-Testing-for-NuProbe-Scientist-I/main/images/BI.png?token=AJUAOATHGBUBBXXYYHKAA7DA5PZLM)
 
 ## Introduction
 This project is the Bioinformatics Testing for NuProbe Scientist I for Dennis Kovarik. This project was completed on 7/12/2021.
@@ -75,14 +76,16 @@ python find_unaligned_amplicon_primers.py
 
 ### Command Line Arguments Supported
 ```
-find_unaligned_amplicon_primers.py --bowtie2_rslt_path <filepath to Bowtie2 results>                                                                          --primers_path <filepath to the .xlsx file holding the primers>"
-                                   --output_NS_pairs <path to NS Pairs excel file>\n    "
-                                   --output_NS_list <path to NS List excel file>\n"
-                                   --heat_map <path to the heat map>\n"
+find_unaligned_amplicon_primers.py --bowtie2_rslt_path <filepath to Bowtie2 results>                                                                          --primers_path <filepath to the .xlsx file holding the primers>
+                                   --output_NS_pairs <path to NS Pairs excel file>
+                                   --output_NS_list <path to NS List excel file>
+                                   --heat_map <path to the heat map>
 ```
 
 ### Output from Program
 As a result of running this program, 2 output excel files and a heat map will be produced. By default, they output files can be found in the my_output/, but this can also be changed. The file output_NS_list.xlsx is simply a list of the unique sequences along with the forward, reverse primers, and some stats. The file output_NS_pairs.xlsx lists the unique primer pairs that make them up along with more states. Finally, a heat map is generated to give a visual representation of the results and provide insight into which primer pairs actually match with a sequence. 
+
+![image](https://raw.githubusercontent.com/denkovarik/Kovarik-BI-Testing-for-NuProbe-Scientist-I/main/images/heat_map.png?token=AJUAOAVGHCPFRHQ6ISBIIY3A5PZOC)
 
 ## Testing
 ### Run All Tests
