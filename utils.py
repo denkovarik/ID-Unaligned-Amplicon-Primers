@@ -4,6 +4,34 @@ from classes.Primer import Primer
 from classes.Reverse_Primer import Reverse_Primer
 from classes.Forward_Primer import Forward_Primer
 from classes.Sequence import Sequence
+from classes.Primer_Pairs import *
+
+
+def create_primer_pairs(amplicons):
+    """
+    Creates a list of sorted Primer_Pairs objects.
+
+    :param amplicons: The amplicons to include
+    :param pairs: A sorted list of Primer_Pairs objects
+    """
+    total = 0
+    pairs_dict = {}
+    for amp in amplicons:
+        if amp.fP is not None and amp.rP is not None:
+            pair = Primer_Pair(amp.fP.index, amp.rP.index, amp.count)
+            total += pair.count
+            if not pair in pairs_dict.keys():
+                pairs_dict[pair] = pair
+            else:
+                pairs_dict[pair].count += pair.count
+    pairs = []
+    # loop through and calculate ratio
+    for key in pairs_dict.keys():
+        p = pairs_dict[key]
+        p.ratio = float(p.count) / total
+        pairs += [p]
+    pairs.sort(reverse=True)
+    return pairs
 
 
 def parse_cmd_args(cmd_args):
@@ -145,3 +173,49 @@ def update_counts(counts, fP, rP, unique):
         # Update counts for total sequences
         counts['total'] += 1
     return counts
+
+
+def write_output_NS_list(amplicons, total, args):
+    """
+    Writes the primer pairs to an excel file 'output_NS_list.xlsx'.
+
+    :param amplicons: A list of amplicons sorted in descending order.
+    :param total: The total number of amplicons
+    """
+    # Create the pandas dataframe
+    cols = ['seq','count','ratio','fP','rP']
+    ind = []
+    data = []
+    for i in range(len(amplicons)):
+        ind += [i]
+        ratio = float(amplicons[i].count) / total
+        fP = ""
+        if amplicons[i].fP is not None:
+            fP = amplicons[i].fP.index
+        rP = ""
+        if amplicons[i].rP is not None:
+            rP = amplicons[i].rP.index
+        row = [str(amplicons[i].sequence), amplicons[i].count, \
+               float(amplicons[i].count) / total, fP, rP]
+        data += [row]
+    df = pd.DataFrame(data, index=ind, columns=cols)
+    df.to_excel(args["--output_NS_list"], sheet_name='My_Output_NS_list')
+
+
+def write_output_NS_Pairs(pairs, args):
+    """
+    Writes the primer pairs to an excel file.
+
+    :params pairs: List of sorted Primer_Pairs
+    :params path: Filepath for excel file.
+    """
+    # Create the pandas dataframe
+    cols = ['fP','rP','count','ratio']
+    ind = []
+    data = []
+    for i in range(len(pairs)):
+        ind += [i]
+        row = [pairs[i].fP, pairs[i].rP, pairs[i].count, pairs[i].ratio]
+        data += [row]
+    df = pd.DataFrame(data, index=ind, columns=cols)
+    df.to_excel(args["--output_NS_pairs"], sheet_name='My_Output_NS_pairs')
