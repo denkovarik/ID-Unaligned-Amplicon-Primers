@@ -68,6 +68,27 @@ class Amplicon():
         return True
 
 
+    def __gt__(self, other):
+        """
+        The overloaded greater than operator.
+
+        :param self: Instance of the Amplicon class.
+        :param other: The other Amplicon to compare to.
+        """
+        return self.count > other.count
+
+
+    def __lt__(self, other):
+        """
+        The overloaded less than operator.
+
+        :param self: Instance of the Amplicon class.
+        :param other: The other Amplicon to compare to.
+        """
+        return self.count < other.count
+        
+
+
     def match_primers(self, fps, rps):
         """
         Determines which forward and reverse primers bind to this instance of
