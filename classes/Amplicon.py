@@ -50,6 +50,22 @@ class Amplicon():
                 raise Exception("Invalid type for Reverse Primer")
             # Check that rP binds to sequence
             self.rP = rP
+        self.count = 1
+
+    def __eq__(self, other):
+        """
+        Overloaded equality operator.
+
+        :param self: Instance of the Amplicon class.
+        :param other: The other Amplicon to compare to.
+        """
+        if self.sequence != other.sequence:
+            return False
+        if self.fP != other.Fp:
+            return False
+        if self.rP != other.Rp:
+            return False
+        return True
 
 
     def match_primers(self, fps, rps):
