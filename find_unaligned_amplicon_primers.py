@@ -59,3 +59,15 @@ with Spinner("Matching Primers to Unique Unaligned Amplicons... ") as spinner:
             counts['count'] += 1
 print_counts(counts)
 samfile.close()
+# Move amplicons to a list so we can sort by count
+amplicons = []
+for key in unique_unaligned_seqs.keys():
+    amplicons += [unique_unaligned_seqs[key]]
+amplicons.sort(reverse=True)
+# Write excel file
+write_output_NS_list(amplicons, counts['total'], args)
+pairs = create_primer_pairs(amplicons)
+write_output_NS_Pairs(pairs, args)
+print("")
+print("Output excel files " + args['--output_NS_list'] + " and " \
+        + args['--output_NS_pairs'] + " have been written.")
