@@ -11,7 +11,7 @@ import os, sys, inspect
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
-from classes.Sequence import Sequence
+from classes.Sequence import *
 from classes.Primer import Primer
 
 
@@ -27,7 +27,9 @@ class Reverse_Primer(Primer):
         else:
             raise Exception("Invalid sequence in Reverse_Primer class init()")
         self.index = index
-    
+        self.reverse_comp = ""
+        self.make_reverse_comp()    
+
 
     def binds_to(self, seq):
         """
@@ -75,21 +77,61 @@ class Reverse_Primer(Primer):
         return len(self.sequence)
 
 
-    def __lt__(self, other):
+    def __gt__(self, other):
         """
-        The overloaded less than operator.
+        The overloaded greater than operator for the class.
 
         :param self: An instance of the Reverse_Primer class.
-        :param other: Another instance of the Reverse_Primer class to compare to.
+        :param other: Another instance of the Reverse_Primer class to compare.
         """
-        for i in range(len(self.sequence)):
-            # If both strings are same to this point and i is greater than the
-            # length of other, then this instance is greater than
-            if i > len(other):
-                return False
-            if self.sequence[len(self.sequence)-i-1] != other[len(other)-i-1]:
-                return self.sequence[len(self.sequence)-i-1] \
-                       < other[len(other)-i-1]
+        if type(other.sequence) == type(""):
+            l = min(len(self.reverse_comp), len(other.sequence))
+            for i in range(l):
+                self_nuc = self.reverse_comp[len(self.reverse_comp)-i-1]
+                other_nuc = other.sequence[len(other.sequence)-i-1]
+                if self_nuc != other_nuc:
+                    return self_nuc > other_nuc
+        l = min(len(self.reverse_comp), len(other.reverse_comp))
+        for i in range(l):
+            self_nuc = self.reverse_comp[len(self.reverse_comp)-i-1]
+            other_nuc = other.reverse_comp[len(other.reverse_comp)-i-1]
+            if self_nuc != other_nuc:
+                return self_nuc > other_nuc
+
+
+    def __lt__(self, other):
+        """
+        The overloaded less than operator for the class.
+
+        :param self: An instance of the Reverse_Primer class.
+        :param other: Another instance of the Reverse_Primer class to compare.
+        """
+        if type(other.sequence) == type(""):
+            l = min(len(self.reverse_comp), len(other.sequence))
+            for i in range(l):
+                self_nuc = self.reverse_comp[len(self.reverse_comp)-i-1]
+                other_nuc = other.sequence[len(other.sequence)-i-1]
+                if self_nuc != other_nuc:
+                    return self_nuc < other_nuc
+        l = min(len(self.reverse_comp), len(other.reverse_comp))
+        for i in range(l):
+            self_nuc = self.reverse_comp[len(self.reverse_comp)-i-1]
+            other_nuc = other.reverse_comp[len(other.reverse_comp)-i-1]
+            if self_nuc != other_nuc:
+                return self_nuc < other_nuc
+
+    def make_reverse_comp(self):
+        """
+        Constructs the reverse compliment of the sequence for the Reverse 
+        Primer.
+
+        :param self: An instance of the Reverse_Primer class
+        """
+        self.reverse_comp = ""
+        seq_len = len(self.sequence)
+        for i in range(seq_len):
+            index = seq_len - i - 1
+            self.reverse_comp += Sequence.Nucleotide.get_compl[self.sequence[index]]
 
 
     def __str__(self):
