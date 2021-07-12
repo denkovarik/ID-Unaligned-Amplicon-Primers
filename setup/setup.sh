@@ -14,3 +14,7 @@ pip install progress tqdm
 pip install xlwt
 # Install openpyxl
 pip install openpyxl
+# Install NumPy
+pip install numpy
+# Install Seqborn
+pip install seaborn

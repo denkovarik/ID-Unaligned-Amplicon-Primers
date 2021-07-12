@@ -13,4 +13,8 @@ pip uninstall progress tqdm
 # Uninstall xlwt
 pip uninstall xlwt
 # Uninstall openpyxl
-pip Uninstall openpyxl
+pip uninstall openpyxl
+# Uninstall NumPy
+pip uninstall numpy
+# Uninstall Seqborn
+pip uninstall seaborn
