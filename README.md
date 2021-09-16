@@ -82,9 +82,9 @@ find_unaligned_amplicon_primers.py --bowtie2_rslt_path <filepath to Bowtie2 resu
 ```
 
 ### Output from Program
-As a result of running this program, 2 output excel files and a heat map will be produced. By default, they output files can be found in the my_output/, but this can also be changed. The file output_NS_list.xlsx is simply a list of the unique sequences along with the forward, reverse primers, and some stats. The file output_NS_pairs.xlsx lists the unique primer pairs that make them up along with more states. Finally, a heat map is generated to give a visual representation of the results and provide insight into which primer pairs actually match with a sequence. 
+As a result of running this program, 2 output excel files and a heat map will be produced. By default, the output files can be found in the my_output/ directory, but this can also be changed. The file output_NS_list.xlsx is simply a list of the unique sequences along with the forward, reverse primers, and some stats. The file output_NS_pairs.xlsx lists the unique primer pairs that make them up along with more stats. Finally, a heat map is generated to give a visual representation of the results and provide insight into which primer pairs actually match with a sequence. 
 
-![image](https://raw.githubusercontent.com/denkovarik/Kovarik-BI-Testing-for-NuProbe-Scientist-I/main/images/heat_map.png?token=AJUAOAVGHCPFRHQ6ISBIIY3A5PZOC)
+![image](https://github.com/denkovarik/ID-Unaligned-Amplicon-Primers/blob/main/images/heat_map.png)
 
 ## Testing
 ### Run All Tests
