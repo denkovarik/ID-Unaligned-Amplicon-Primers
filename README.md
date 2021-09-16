@@ -9,11 +9,11 @@ PCR is a procedure where scientists amplify target sequences to perform further 
 This project helps to do just that! Given the results from the Bowtie2 software and a list of primers, this software attempts to identify the primer pairs that led to the non-specific amplification. Some of the assumptions made in the process are as follows:
 
 1. There is no adapter, meaning that the forward and reverse primers start and the very ends of the sequence. 
-2. Further, a complete match between the primers and sequence were requiired before being considered a match.
+2. Further, a complete match between the primers and sequences were required before being considered a match.
 
-Now in reality, some mismatches between the primer and target sequence may be tolerated, but by enforcing a complete match between the primer pairs and the sequence, we do to things that are beneficial.
+Now in reality, some mismatches between the primer and target sequence may be tolerated, but by enforcing a complete match between the primer pairs and the sequence, we do two things that are beneficial.
 
-1. We limit the number of False Positive matches between the primers and thee sequence. The less mismatches we have, the less likely a primer will be falsely identified as binding to a sequence.
+1. We limit the number of False Positive matches between the primers and the sequences. The less mismatches we have, the less likely a primer will be falsely identified as binding to a sequence.
 2. By enforcing a complete match, we can do a binary search for a match, which would save time. 
 
 By doing this, this software can help researchers identify primers that might be negatively affecting their PCR results.
@@ -36,11 +36,11 @@ This project was developed for the Ubuntu 20.04 OS.
 ### Cloning This Repo with HTTPS
 To download this repository on your device, you must clone this repo using either HTTPS or SSH. The easiest way to clone this repository on your local device is through HTTPS. If you SDK allows you to clone a repo through HTTPS, then do so. Otherwise, you can do it directly on the command prompt. To do so, open up the command prompt and move to the desired directory. Then simply run the following command and enter you credentials.
 ```
-git clone https://github.com/denkovarik/Kovarik-BI-Testing-for-NuProbe-Scientist-I.git
+git clone https://github.com/denkovarik/ID-Unaligned-Amplicon-Primers.git
 ```
 After the repo has been cloned on your device, move into the Kovarik-Technical-Interview directory from the command line.
 ```
-cd Kovarik-BI-Testing-for-NuProbe-Scientist-I
+cd ID-Unaligned-Amplicon-Primers
 ```
 
 ### Cloning This Repo with SSH
@@ -55,11 +55,11 @@ Once you have an SSH Key Pair generated, you need to add your public SSH key to 
 #### Clone the Repository
 If your SDK allows for it, then clone this repository through you SDK. Otherwise, open up the command prompt, move the the directory of your choice, then run the following command.
 ```
-git git@github.com:denkovarik/Kovarik-BI-Testing-for-NuProbe-Scientist-I.git
+git clone git@github.com:denkovarik/ID-Unaligned-Amplicon-Primers.git
 ```
 After the repo has been cloned on your device, move into the Bioinformatics-Tools directory from the command line.
 ```
-cd Kovarik-BI-Testing-for-NuProbe-Scientist-I
+cd ID-Unaligned-Amplicon-Primers
 ```
 
 ### Install Dependencies
