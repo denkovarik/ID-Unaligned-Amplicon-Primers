@@ -1,6 +1,6 @@
 # Kovarik Bioinformatics Testing for NuProbe Scientist I
 
-![image](https://raw.githubusercontent.com/denkovarik/Kovarik-BI-Testing-for-NuProbe-Scientist-I/main/images/BI.png?token=AJUAOATHGBUBBXXYYHKAA7DA5PZLM)
+![image](https://github.com/denkovarik/Kovarik-BI-Testing-for-NuProbe-Scientist-I/blob/main/images/BI.png)
 
 ## Introduction
 This project is the Bioinformatics Testing for NuProbe Scientist I for Dennis Kovarik. This project was completed on 7/12/2021.
