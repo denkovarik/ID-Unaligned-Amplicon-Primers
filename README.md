@@ -3,7 +3,6 @@
 ![image](https://github.com/denkovarik/Kovarik-BI-Testing-for-NuProbe-Scientist-I/blob/main/images/BI.png)
 
 ## Introduction
-This project is the Bioinformatics Testing for NuProbe Scientist I for Dennis Kovarik. This project was completed on 7/12/2021.
 
 PCR is a procedure where scientists amplify target sequences to perform further study. One reason they may want amplification is if they wanted to align these sequences to determine their homology and/or similarity to each other. Software such as Bowtie2 will attempt to align amplicons, but at times it will fail to align some sequences. This non-specific amplification is bad because it can suppress the on-target amplification, which would increase non-uniformity and increase costs. Because of this, it is important to try to remove the primers that caused to amplification of these unaliged amplicaons. Doing this would help produce better results from PCR amplification by promoting uniformity and decreasing costs.
 
