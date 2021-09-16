@@ -1,16 +1,16 @@
-# Kovarik Bioinformatics Testing for NuProbe Scientist I
+# ID-Unaligned-Amplicon-Primers
 
 ![image](https://github.com/denkovarik/Kovarik-BI-Testing-for-NuProbe-Scientist-I/blob/main/images/BI.png)
 
 ## Introduction
 This project is the Bioinformatics Testing for NuProbe Scientist I for Dennis Kovarik. This project was completed on 7/12/2021.
 
-PCR is a procedure where scientists amplify target sequences to perform further study. One reason they my want amplification is if they wanted to align these sequences to determine their homology and/or similarity to each other. Software such as Bowtie2 will attempt to align amplicons, but at times it will fail to align some sequences. This non-specific amplification is bad because it can suppress the on-target amplification, which would increase non-uniformity and increase costs. Because of this, it is important to try to remove the primers that caused to amplification of these unaliged amplicaons. Doing this would help produce better results from PCR amplification by promoting uniformity and decreasing costs.
+PCR is a procedure where scientists amplify target sequences to perform further study. One reason they may want amplification is if they wanted to align these sequences to determine their homology and/or similarity to each other. Software such as Bowtie2 will attempt to align amplicons, but at times it will fail to align some sequences. This non-specific amplification is bad because it can suppress the on-target amplification, which would increase non-uniformity and increase costs. Because of this, it is important to try to remove the primers that caused to amplification of these unaliged amplicaons. Doing this would help produce better results from PCR amplification by promoting uniformity and decreasing costs.
 
-This project attempts to do just that! Given the results from the Bowtie2 software and a list of primers, this software attempts to identify the primer pairs that led to the non-specific amplification. Some of the assumptions made in the process are as follows:
+This project helps to do just that! Given the results from the Bowtie2 software and a list of primers, this software attempts to identify the primer pairs that led to the non-specific amplification. Some of the assumptions made in the process are as follows:
 
 1. There is no adapter, meaning that the forward and reverse primers start and the very ends of the sequence. 
-2. Further, a complete match between the primers and sequence where requiired before being considered a match.
+2. Further, a complete match between the primers and sequence were requiired before being considered a match.
 
 Now in reality, some mismatches between the primer and target sequence may be tolerated, but by enforcing a complete match between the primer pairs and the sequence, we do to things that are beneficial.
 
