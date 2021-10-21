@@ -75,7 +75,8 @@ python find_unaligned_amplicon_primers.py
 
 ### Command Line Arguments Supported
 ```
-find_unaligned_amplicon_primers.py --bowtie2_rslt_path <filepath to Bowtie2 results>                                                                          --primers_path <filepath to the .xlsx file holding the primers>
+find_unaligned_amplicon_primers.py --bowtie2_rslt_path <filepath to Bowtie2 results>                                                                       
+                                   --primers_path <filepath to the .xlsx file holding the primers>
                                    --output_NS_pairs <path to NS Pairs excel file>
                                    --output_NS_list <path to NS List excel file>
                                    --heat_map <path to the heat map>
