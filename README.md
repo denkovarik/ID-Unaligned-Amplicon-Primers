@@ -95,22 +95,22 @@ As a result of running this program, 2 output excel files and a heat map will be
 
 ### Run testing for Amplicon class
 ```
-testing/Amplicon_tests.py 
+python testing/Amplicon_tests.py 
 ```
 
 ### Run testing for Forward_Primer class
 ```
-testing/Forward_Primer_tests.py
+python testing/Forward_Primer_tests.py
 ```
 
 ### Run testing for Reverse_Primer class
 ```
-testing/Reverse_Primer_tests.py
+python testing/Reverse_Primer_tests.py
 ```
 
 ### Run testing for Sequence_tests.py class
 ```
-testing/Sequence_tests.py
+python testing/Sequence_tests.py
 ```
 
 ## Author
